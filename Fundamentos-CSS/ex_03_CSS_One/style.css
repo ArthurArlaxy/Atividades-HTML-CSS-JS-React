@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat',sans-serif;
+}
+
+body{
+    background-color: rgb(180, 197, 196);
+}
+
+header{
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding: 1rem;
+}
+
+h1, h2{
+    font-family: 'Gilda Display',serif;
+    font-weight: 200;
+
+}
+
+.secao-imagem{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    flex-direction: column;
+    padding: 3%;
+}
+
+.inscreva-se{
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 0.5rem 1.5rem;
+
+}
+
+img{
+    width: 35%;
+}
+
+.secao-explorar{
+    display: block;
+    text-align: center;
+    margin: 5%;
+}
+
+.explorar{
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.ver_mais{
+    display: inline-block;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 1%;
+    margin: 1%;
+}
+.secao-inscreva-se{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 3%;
+}
+
+footer{
+    background-color: #000000;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 1%;
+}

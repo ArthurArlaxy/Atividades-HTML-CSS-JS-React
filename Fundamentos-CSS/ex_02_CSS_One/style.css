@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    margin: 3%;
+}
+
+li{
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 40px 40px 200px ;
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 16px;
+    margin: 30px
+}
+
+.selected{
+    border: 3px solid rgb(0, 225, 255);
+    background-color: rgb(52, 53, 53);
+}
+.hidden{
+    display: none;
+}
