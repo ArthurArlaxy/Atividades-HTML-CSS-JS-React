@@ -17,5 +17,5 @@ let palavraviagem
 
 numeroViagens === 1? palavraviagem = "viagem" : palavraviagem = "viagens"
 
-alert(`Então você, ${name},  teve ${numeroViagens} ${palavraviagem}\n
+alert(`Então você, ${name}, teve ${numeroViagens} ${palavraviagem}\n
     Lugar(es) ${lugares}`)
