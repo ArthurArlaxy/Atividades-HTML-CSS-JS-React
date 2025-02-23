@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="app.js" defer></script>
+    <title>Ex JavaScript - Escalação Time</title>
+</head>
+<body>
+    <h1>Escalação do Time</h1>
+    <h2>Escalar Jogador</h2>
+
+    <label for="name">Nome: </label>
+    <input type="text" name="name" id="name" required>
+    <br><br>
+    <label for="position">Posição: </label>
+    <input type="text" name="position" id="position" required>
+    <br><br>
+    <label for="number">Número: </label>
+    <input type="text" name="number" id="number" required>
+    <br><br>
+    <button onclick="addPlayer()" type="submit">Escalar</button>
+    <br><br>
+    <h2>Remover Jogador</h2>
+    <label for="numberRemove">Número: </label>
+    <input type="text" name="number" id="numberRemove" required>
+    <button onclick="removePlayer()" type="submit">Remover</button>
+
+    <hr>
+    <h2>Time</h2>
+    <section id="playerSection"></section>
+
+
+</body>
+</html>
