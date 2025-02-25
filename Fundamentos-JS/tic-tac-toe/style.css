@@ -13,6 +13,7 @@
     margin: 0;
     font-family: "Montserrat", serif;
     box-sizing: border-box;
+
 }
 
 body{
@@ -40,16 +41,17 @@ h2{
 }
 
 .btn-game {
-    background-color: var(--cor-terciaria);
+    background-color: transparent;
     border-radius: 2px;
-    width: 8rem;      /* Largura fixa */
-    height: 8rem;     /* Altura fixa */
+    width: 8rem;    
+    height: 8rem;    
     font-size: 6rem;
-    font-weight: 300;  /* Tamanho da fonte */
-    display: flex;    /* Torna o botão um contêiner flexível */
-    justify-content: center; /* Centraliza o texto horizontalmente */
-    align-items: center; /* Centraliza o texto verticalmente */
-
+    font-weight: 300; 
+    display: flex;   
+    justify-content: center; 
+    align-items: center; 
+    border: 0;
+    cursor: pointer;
 }
 
 input{
@@ -114,30 +116,26 @@ footer{
 }
 
 
-
-
-
-
 @media (max-width: 500px){
     h1{
         font-size: 2.5rem;
     }
 
     .btn-game{
-        width: 4rem;
-        height: 4rem;
+        width: 5rem;
+        height: 5rem;
         font-size: 4rem;
     }
     #game {
-        grid-template-columns: repeat(3, 4rem); 
-        grid-template-rows: repeat(3, 4rem); 
+        grid-template-columns: repeat(3, 5rem); 
+        grid-template-rows: repeat(3, 5rem); 
         margin: 3rem;
     }
 }
 
 @media (max-width: 330px){
     h1{
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     h2{
         font-size: 1.5rem;
@@ -151,13 +149,13 @@ footer{
     }
 
     .btn-game{
-        width: 4rem;
-        height: 4rem;
+        width: 4.5rem;
+        height: 4.5rem;
         font-size: 4rem;
     }
     #game {
-        grid-template-columns: repeat(3, 4rem); 
-        grid-template-rows: repeat(3, 4rem); 
+        grid-template-columns: repeat(3, 4.5rem); 
+        grid-template-rows: repeat(3, 4.5rem); 
         margin: 3rem;
     }
     

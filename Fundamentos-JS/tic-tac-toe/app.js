@@ -13,6 +13,7 @@ buttons.forEach(button => {
     button.disabled = true;
 });
 
+
 function getWinPossibilities(classe){
     let possibility = document.getElementsByClassName(classe)
     win = []
