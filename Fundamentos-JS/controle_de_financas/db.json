@@ -1,0 +1,34 @@
+{
+  "finanças": [
+    {
+      "id": "7850",
+      "description": "Sálario",
+      "value": 1000
+    },
+    {
+      "id": "bd10",
+      "description": "Ganhei no tigrinho",
+      "value": 300
+    },
+    {
+      "id": "c636",
+      "description": "Conta de Aguá",
+      "value": -100
+    },
+    {
+      "id": "c5bd",
+      "description": "Malu",
+      "value": -200
+    },
+    {
+      "id": "f706",
+      "description": "Freelancer",
+      "value": 500
+    },
+    {
+      "id": "6267",
+      "description": "malu",
+      "value": 100
+    }
+  ]
+}

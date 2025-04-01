@@ -1,0 +1,28 @@
+{
+  "spaceships": [
+    {
+      "id": "15e3",
+      "name": "han",
+      "pilot": "Han solo",
+      "crewLimit": 2,
+      "crew": [
+        "Pedro",
+        "Caio"
+      ],
+      "inMission": true
+    },
+    {
+      "id": "9b7c",
+      "name": "Falcon 11",
+      "pilot": "Arthur",
+      "crewLimit": 9,
+      "crew": [
+        "Maria",
+        "Elisa",
+        "Cristiano",
+        "Daniele"
+      ],
+      "inMission": true
+    }
+  ]
+}

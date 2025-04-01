@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: "Montserrat", serif;
+}
+
+body{
+    height: 90vh;
+    background-color: #161515;
+    color: #FFF;
+}
+
+h1{
+    font-size: 3rem;
+    margin: 3rem;
+}
+
+h2{
+    font-size: 1.8rem;
+}
+
+h3{
+    width:  18rem;
+}
+
+.transfer{
+    padding: .8rem;
+    border: 1px solid rgb(0, 174, 255);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+main{
+    display: flex;
+    gap: 5rem ; 
+    margin:2rem;
+}
+
+#pay{
+    width: 29%;
+}
+
+#transfer{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 70%;
+}
+div{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.editBtn{
+    border: 1px solid #00b7ff;
+    color:#ffffff;
+    padding: 0 2rem;
+    background-color: #000000;
+    margin: 0 1rem;
+}
+
+#submitBtn{
+    margin: 1rem;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    border-radius: 16px;
+    background-color: #00b7ff;
+    color: #ffffff;
+    box-shadow: 0px 0px 23px 1px #00b7ff;
+    border: 0;
+}
+
+input{
+    height: 2rem;
+}
+
+label{
+    font-size: 1.3rem;
+}
+
+.deleteBtn{
+    color:#ff0808;
+    font-size: 1.25rem;
+    background-color: transparent;
+    border: 0;
+}
+
+.credit{
+    color: #00ff0d;
+}
+
+.debit{
+    color: #ff0808;
+}
+
+.positive{
+    color:#09ff3b
+}
+
+.negative{
+    color:#ffa600
+}

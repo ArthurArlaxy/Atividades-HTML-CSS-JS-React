@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>Controle Financeiro</title>
+</head>
+<body>
+    <header>
+        <h1>Controle de finanças</h1>
+    </header>
+    <main>
+        <section id="pay">
+            <form action="http://localhost:3000/finanças" method="post" id="post">
+                <h2>Nova Transferencia</h2>
+                <label for="description">Descrição: </label>
+                <input type="hidden" name="id" id="id">
+                <input type="text" class="description" id="description">
+                <label for="value">Valor: </label>
+                <input type="text" class="value" id="value" >
+                <button type="submit" id="submitBtn">adicionar</button>
+            </form>
+        </section>
+        <section id="transfer">
+            <h2 id="amount">Saldo: 0</h2>
+            <h2>Histórico de transferências:</h2>
+        </section>
+    </main>
+</body>
+</html>
