@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat",serif;
+}
+
+body{
+    background-image: url(images/background.png);
+    background-size: cover;
+    background-position: center;
+    height: 105vh;
+}
+
+header{
+    display: flex;
+    background-color: hsla(0, 0%, 100%, 0.751);
+    padding:  0 3rem;
+    height: 4rem;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav{
+    display: flex;
+    gap: 1rem;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 600;
+    color: orangered;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    padding-top: 50vh;
+    gap:1rem;
+}
+
+
+
+div > a {
+    border: 1px #ffffff solid;
+    color: #FFF;
+    background-color: orangered;
+    padding: .4rem;
+    border-radius: .5rem;
+    margin: 1rem;
+}
+
+h2{
+    font-size: 2.75rem;
+    color: #FFF;
+    text-shadow: 2px 3px 4px rgb(0, 0, 0);
+}
+
+footer{
+    position: fixed;
+    bottom: 0; /* cola no fundo da tela */
+    width: 100%; /* ocupa a largura total */
+    display: flex;
+    justify-content: right;
+}
+
+footer nav {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 8vh;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% transparente */;
+}
+
+footer nav  a{
+    color: #FFF;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+header > a:hover {
+    text-decoration: underline;
+}
+header > nav > a:hover {
+    text-decoration: underline;
+}
+div > a:hover{
+    background-color: rgb(49, 58, 59);
+}
