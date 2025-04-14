@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat";
+}
+
+:root{
+    --background-color:#2c2c2e;
+    --elements-color:#070707;
+    --primaty-color:#6c63ff;
+    --word-color: #ffffff;
+    --word-2sc-color:#FFF;
+    --weak-word-color:#6d6d6f;
+}
+
+body{
+    background-color:var(--background-color) ;
+    color:var(--word-color);
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--word-2sc-color);
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(media/Grupo.webp);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+
+}
+
+.hero-content, .speakers-grid, .speaker-card, .schedule-grid,.newsletter-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-content{
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+h1{
+    font-size: 1.8rem;
+
+}
+
+h2{
+    text-align: center; 
+    padding: 2rem;
+}
+
+.speaker-card > img{
+    border-radius: 10rem;
+}
+
+.speaker-card,.schedule-item{
+    background-color: var(--elements-color);
+    width: 100%;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.schedule-grid,.speakers-grid{
+    margin: 0 1rem;
+}
+
+.newsletter-image{
+    width: 100%;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: .4rem;
+}
+
+.newsletter-image > img{
+    padding-top: 3rem;
+    width: 80%;
+}
+.newsletter-image,.newsletter-text, .footer{
+    text-align: center;
+}
+.newsletter-text p{
+    color: var(--weak-word-color);
+}
+
+input{
+    margin: 0 1rem;
+    height: 2.2rem;
+    padding: 0 1rem;
+    background-color: var(--elements-color);
+    border: 1px solid var(--weak-word-color);
+    border-radius: 8px;
+    width: 100%;
+}
+
+a,button{
+    text-decoration: none;
+    color:var(--word-2sc-color);
+    background-color: var(--primaty-color) ;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--elements-color);
+}
+
+footer> p {
+    margin: 2rem 1rem;
+    font-size: .8em;
+}
+
+footer{
+    margin-bottom: 2rem;
+}
+
+@media (prefers-color-scheme:light) {
+    :root{
+        --background-color:#e0e0e0;
+        --elements-color:#ffffff;
+        --primaty-color:#6c63ff;
+        --word-color: #000000;
+        --word-2sc-color:#FFF;
+        --weak-word-color:#848486;
+    }
+}
+
+@media (min-height:769px) {
+    .hero-content > h1{
+        font-size: 3rem;
+    }
+
+    h2{
+        font-size: 2.3rem;
+    }
+
+    h3{
+        font-size: 1.8rem;
+    }
+
+    p{
+        font-size: 1.2rem;
+    }
+
+    .speakers-grid{
+        flex-direction: row;
+        margin:2rem
+    }
+
+    .schedule-grid,.newsletter-grid{
+        display: grid;
+        align-items: center;
+        justify-items:center;
+        gap:1rem;
+    }
+
+    .schedule-grid{
+        grid-template-areas: 
+        "schedule1  schedule2"
+        "schedule3  schedule4";
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .schedule-item h3{
+        font-size: 1.5rem;
+    }
+
+    .newsletter-grid{
+        grid-template-areas: 
+        "newsletter-image  newsletter-text"
+    }
+
+    .newsletter-form,.form-group{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width:100%;
+    }
+
+    .form-group{
+        padding:1rem 0;
+    }
+
+    input{
+        margin: 0;
+    }
+}

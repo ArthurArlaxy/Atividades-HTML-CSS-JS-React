@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root{
+    --primaty-color: #1f1f1f;
+    --second-color:#333333;
+    --word-color:#FFF;
+}  
+
+body{
+    background-color: var(--primaty-color);
+    color:var(--word-color);
+}
+
+a{
+    text-decoration: none;
+    color: var(--word-color);
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--second-color);
+    padding: 1rem;
+}
+
+.logo{
+    font-size: 1.7rem;
+}
+
+ul > li{
+    list-style: none;
+    padding-top: 1rem;
+    font-weight: 600;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+h1{
+    font-size: 1.75rem;
+}
+
+p{
+    line-height: 1.7;
+}
+
+@media  screen and (min-width:768px){
+    nav{
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 5rem;
+    }
+
+    ul{
+        display: flex;
+        gap: 2rem;
+    }
+
+    section{
+        margin:2rem 6rem 0;
+    }
+
+    ul>li{
+        padding-top: 0;
+    }
+
+    h1{
+        font-size: 2.5rem;
+    }
+    
+    p{
+        font-size: 1.4rem;
+    }
+}
+
+@media (prefers-color-scheme:light){
+    :root{
+        --primaty-color: #cccccc;
+        --second-color:#b9b3b3;
+        --word-color:#000;
+    }  
+    
+}
