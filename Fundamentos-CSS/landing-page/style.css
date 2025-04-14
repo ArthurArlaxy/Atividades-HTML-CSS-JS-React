@@ -73,11 +73,23 @@ h2{
     margin: 0 1rem;
 }
 
+.speakers-grid .speaker-card{
+    min-height: 22rem;
+}
+
+.schedule-grid .schedule-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 9rem;
+}
+
 .newsletter-image{
     width: 100%;
 }
 
-.form-group{
+.form-group,{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +147,7 @@ footer{
     }
 }
 
-@media (min-height:769px) {
+@media (min-width:769px) {
     .hero-content > h1{
         font-size: 3rem;
     }
@@ -145,11 +157,11 @@ footer{
     }
 
     h3{
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     p{
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .speakers-grid{
