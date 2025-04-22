@@ -1,5 +1,5 @@
 // Import all of Bootstrap's CSS
-@use "bootstrap/scss/bootstrap" as *;
+@import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
@@ -15,7 +15,7 @@ body{
 }
 
 .hero{
-    background-image:linear-gradient(1200deg,rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url(/images/Fundo-hero.webp);
+    background-image:linear-gradient(1200deg,rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url(../images/Fundo-hero.webp);
     min-height: 40vh;
     background-position: center;
     background-size: cover;
@@ -61,7 +61,7 @@ body{
 
 .slogan{
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(/images/img\ 1.webp);
+    url(../images/img\ 1.webp);
     text-shadow: 1px 2px 3px #353535;
     background-position: center;
     background-size:cover;
