@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-bt" data-bs-theme="dark">
+<html lang="pt-bt" >
 
 <head>
     <meta charset="UTF-8">
@@ -11,60 +11,61 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg-body-tertiary">
-        <div class="container-fluid container-md ">
-            <a class="navbar-brand" href="#">DevHub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class=" navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link bi-house active" aria-current="page" href="#"> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link bi-binoculars" href="#"> Discover</a>
-                    </li>
-
-                    <li class="nav-item d-flex align-items-center">
-                        <a class="nav-link bi-chat-dots"> Message</a>
-                        <a class="bi-3-square-fill pop" href="#"></a>
-                    </li>
-                </ul>
-                <form class="d-none d-md-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary bi-search me-4" type="submit"></button>
-                </form>
-                <button class="btn btn-sm btn-primary nav-item dropdown navbar-nav">
-                    <a class="nav-link text-dark dropdown-toggle bi-three-dots-vertical" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Options
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item bi-person-circle" href="#"> My Account</a></li>
-                        <li><a class="dropdown-item bi-gear" href="#"> Settings and Privacy</a></li>
-                        <li><a class="dropdown-item bi-question-circle" href="#"> Help and Support</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item bi-moon-stars" href="#"> Switch theme</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item bi-door-open" href="#"> Logout</a></li>
-                    </ul>
+    <header>
+        <nav class="navbar w-100 navbar-expand-md bg-body-tertiary">
+            <div class="container-lg ">
+                <a class="navbar-brand" href="#">DevHub</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class=" navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link bi-house active" aria-current="page" href="#"> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bi-binoculars" href="#"> Discover</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link bi-chat-dots" href="#"> Message</a>
+                            <a class="bi-3-square-fill pop mx-1" href="#"></a>
+                        </li>
+                    </ul>
+                    <form class="d-none d-md-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-primary bi-search me-3" type="submit"></button>
+                    </form>
+                    <button class="btn btn-sm btn-primary nav-item dropdown navbar-nav">
+                        <a class="nav-link text-dark dropdown-toggle bi-three-dots-vertical" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Options
+                        </a>
+                        <ul class=" dropdown-menu ">
+                            <li><a class="dropdown-item bi-person-circle" href="#"> My Account</a></li>
+                            <li><a class="dropdown-item bi-gear" href="#"> Settings and Privacy</a></li>
+                            <li><a class="dropdown-item bi-question-circle" href="#"> Help and Support</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item bi-moon-stars" id="btn-theme" > Switch theme</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item bi-door-open" href="#"> Logout</a></li>
+                        </ul>
+                    </button>
+                </div>
             </div>
-        </div>
-    </nav>
-    <main class="row">
-        <section class="d-none d-lg-block col-0 offset-1 col-lg-2  mt-4">
-            <div class="card p-3">
-                <h3>Navegation</h3>
+        </nav>
+    </header>
+    <main class="row w-100 m-0 ">
+        <section class="d-none d-lg-block col-0 offset-lg-1 col-lg-2 mt-4">
+            <div class="card bg-body-tertiary p-3">
+                <h3 class="mb-2">Navegation</h3>
                 <nav>
-                    <ul class="list-unstyled ms-3">
+                    <ul class="d-flex flex-column gap-2 list-unstyled ms-3">
                         <li><a class="text-primary text-decoration-none bi-person" href="#"> Profile</a></li>
                         <li><a class="text-primary text-decoration-none bi-people" href="#"> Groups</a></li>
                         <li><a class="text-primary text-decoration-none bi-code-slash" href="#"> Projects</a></li>
@@ -74,15 +75,136 @@
                 </nav>
             </div>
         </section>
-        <section class=" col-12 col-lg-6 mt-4">
-            <div class="card input-group" action="#">
-                <div class="d-flex py-4 card-body ">
-                    <img class="img-fluid rounded-circle px-3" src="./public/MInha foto.jpeg" alt="Imagem de perfil">
-                    <button class="form-control" type="text"></button>
+        <section class="col-12 col-lg-6 mt-4 p-0 ">
+            <div class="px-3">
+                <div class="bg-body-tertiary card input-group rounded-3 " action="#">
+                    <div class="d-flex py-4 card-body mx-2 w-100 ">
+                        <img class="img-fluid rounded-circle mx-2" src="./MInha foto.jpeg"
+                            alt="Imagem de perfil">
+                        <input type="input" class="form-control" id="post-button" readonly placeholder="Crie seu post" data-bs-toggle="modal"
+                            data-bs-target="#post"></input>
+                        <div class="modal fade" id="post" tabindex="-1" aria-labelledby="postLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="postLabel">New Post</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3 ">
+                                                <textarea class="form-control w-100" placeholder="Share something"
+                                                    id="post-input"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-tertiary"
+                                            data-bs-dismiss="modal">Desfazer</button>
+                                        <button type="button" class="btn btn-primary">Criar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <hr class="mx-3">
+                <div class="px-3">
+                    <div class="card w-100 bg-body-tertiary mb-3 " action="#">
+                        <div class="d-flex mt-3">
+                            <img class="img-fluid rounded-circle mx-3 perfil" src="./MInha foto.jpeg"
+                                alt="Imagem de perfil">
+                            <div>
+                                <p class="fw-bold my-0">Arlaxy</p>
+                                <p class="text-tertiary"> 2 hours ago</p>
+                            </div>
+                        </div>
+                        <p class="m-3 ">Estou muito feliz de montar essa estrutura com Bootstrap e SASS</p>
+                        <hr class="mx-3">
+                        <div class="d-flex justify-content-around pb-3 ">
+                            <a class="bi-hand-thumbs-up text-decoration-none interaction-color " onclick=""> Curtir</a>
+                            <a class="bi-chat text-decoration-none interaction-color " onclick=""> Comentar</a>
+                            <a class="bi-share text-decoration-none interaction-color " onclick=""> Compartilhar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3">
+                    <div class="card w-100 bg-body-tertiary mb-3" action="#">
+                        <div class="d-flex mt-3">
+                            <img class="img-fluid rounded-circle mx-3 perfil" src="./MInha foto.jpeg"
+                                alt="Imagem de perfil">
+                            <div>
+                                <p class="fw-bold my-0">Arlaxy</p>
+                                <p class="text-tertiary"> 2 hours ago</p>
+                            </div>
+                        </div>
+                        <p class="m-3 ">Foi um projeto desafiador mais muito interessante</p>
+                        <hr class="mx-3">
+                        <div class="d-flex justify-content-around pb-3">
+                            <a class="bi-hand-thumbs-up text-decoration-none interaction-color" onclick=""> Curtir</a>
+                            <a class="bi-chat text-decoration-none interaction-color" onclick=""> Comentar</a>
+                            <a class="bi-share text-decoration-none interaction-color" onclick=""> Compartilhar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3">
+                    <div class="card w-100 bg-body-tertiary mb-3" action="#">
+                        <div class="d-flex mt-3">
+                            <img class="img-fluid rounded-circle mx-3 perfil" src="./MInha foto.jpeg"
+                                alt="Imagem de perfil">
+                            <div>
+                                <p class="fw-bold my-0">Arlaxy</p>
+                                <p class="text-tertiary"> 2 hours ago</p>
+                            </div>
+                        </div>
+                        <p class="m-3 ">Mas foi uma experiancia que me agregou muito</p>
+                        <hr class="mx-3">
+                        <div class="d-flex justify-content-around pb-3">
+                            <a class="bi-hand-thumbs-up text-decoration-none interaction-color" onclick=""> Curtir</a>
+                            <a class="bi-chat text-decoration-none interaction-color" onclick=""> Comentar</a>
+                            <a class="bi-share text-decoration-none interaction-color" onclick=""> Compartilhar</a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section class="d-none d-lg-block col-lg-2 mt-4 ">
+            <div class="card bg-body-tertiary p-3">
+                <h3 class="">Trends</h3>
+                <nav>
+                    <ul class="list-unstyled ">
+                        <li><a class="text-primary " href="#">#Profile</a></li>
+                        <li><a class="text-primary " href="#">#Groups</a></li>
+                        <li><a class="text-primary " href="#">#Projects</a></li>
+                        <li><a class="text-primary " href="#">#Events</a></li>
+                        <li><a class="text-primary " href="#">#Saved</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="AddAutoPlaying" class="carousel slide my-3 " data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./Captura de tela 2025-02-05 103612.png" class="d-block w-100"
+                            alt="Anuncio de projet">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./Captura de tela 2025-02-12 213710.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./Flappy bird linkedin.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./API- Ecommerce linkedin.png" class="d-block w-100" alt="...">
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+    <footer>
+
+    </footer>
 </body>
 
 </html>
