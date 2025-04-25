@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./scss/styles.scss">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./scss/styles.scss">
     <script src="./js/main.js" type="module" defer></script>
     <title>DevHub</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar w-100 navbar-expand-md bg-body-tertiary">
             <div class="container-lg ">
@@ -26,43 +26,46 @@
                             <a class="nav-link bi-house active" aria-current="page" href="#"> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bi-binoculars" href="#"> Discover</a>
+                            <a class="nav-link bi-compass" href="#"> Discover</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-link bi-chat-dots" href="#"> Message</a>
-                            <a class="bi-3-square-fill pop mx-1" href="#"></a>
+                            <span class="badge bg-danger mx-1" href="#">2</span>
                         </li>
                     </ul>
                     <form class="d-none d-md-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary bi-search me-3" type="submit"></button>
                     </form>
-                    <button class="btn btn-sm btn-primary nav-item dropdown navbar-nav">
-                        <a class="nav-link text-dark dropdown-toggle bi-three-dots-vertical" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Options
-                        </a>
-                        <ul class=" dropdown-menu ">
-                            <li><a class="dropdown-item bi-person-circle" href="#"> My Account</a></li>
-                            <li><a class="dropdown-item bi-gear" href="#"> Settings and Privacy</a></li>
-                            <li><a class="dropdown-item bi-question-circle" href="#"> Help and Support</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item bi-moon-stars" id="btn-theme" > Switch theme</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item bi-door-open" href="#"> Logout</a></li>
-                        </ul>
-                    </button>
+                    <hr>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-primary  dropdown-toggle ">
+                            <i class=" text-dark bi-three-dots-vertical" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Options
+                        </i>
+                            <ul class=" dropdown-menu">
+                                <li><a class="dropdown-item bi-person-circle" href="#"> My Account</a></li>
+                                <li><a class="dropdown-item bi-gear" href="#"> Settings and Privacy</a></li>
+                                <li><a class="dropdown-item bi-question-circle" href="#"> Help and Support</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item bi-moon-stars" id="btn-theme" > Switch theme</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item bi-door-open" href="#"> Logout</a></li>
+                            </ul>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <main class="row w-100 m-0 ">
+    <main class="row w-100 m-0 flex-grow-1 ">
         <section class="d-none d-lg-block col-0 offset-lg-1 col-lg-2 mt-4">
-            <div class="card bg-body-tertiary p-3">
+            <div class="card shadow bg-body-tertiary p-3">
                 <h3 class="mb-2">Navegation</h3>
                 <nav>
                     <ul class="d-flex flex-column gap-2 list-unstyled ms-3">
@@ -77,9 +80,9 @@
         </section>
         <section class="col-12 col-lg-6 mt-4 p-0 ">
             <div class="px-3">
-                <div class="bg-body-tertiary card input-group rounded-3 " action="#">
-                    <div class="d-flex py-4 card-body mx-2 w-100 ">
-                        <img class="img-fluid rounded-circle mx-2" src="./MInha foto.jpeg"
+                <div class="bg-body-tertiary card shadow input-group rounded-3 " action="#">
+                    <div class="d-flex py-4 card-body gap-2 w-100 ">
+                        <img class="img-fluid rounded-circle " src="./MInha foto.jpeg"
                             alt="Imagem de perfil">
                         <input type="input" class="form-control" id="post-button" readonly placeholder="Crie seu post" data-bs-toggle="modal"
                             data-bs-target="#post"></input>
@@ -113,7 +116,7 @@
                 </div>
                 <hr class="mx-3">
                 <div class="px-3">
-                    <div class="card w-100 bg-body-tertiary mb-3 " action="#">
+                    <div class="card shadow w-100 bg-body-tertiary mb-3 " action="#">
                         <div class="d-flex mt-3">
                             <img class="img-fluid rounded-circle mx-3 perfil" src="./MInha foto.jpeg"
                                 alt="Imagem de perfil">
@@ -124,15 +127,15 @@
                         </div>
                         <p class="m-3 ">Estou muito feliz de montar essa estrutura com Bootstrap e SASS</p>
                         <hr class="mx-3">
-                        <div class="d-flex justify-content-around pb-3 ">
-                            <a class="bi-hand-thumbs-up text-decoration-none interaction-color " onclick=""> Curtir</a>
-                            <a class="bi-chat text-decoration-none interaction-color " onclick=""> Comentar</a>
-                            <a class="bi-share text-decoration-none interaction-color " onclick=""> Compartilhar</a>
+                        <div class="d-flex justify-content-around pb-2 ">
+                            <button class="btn bi-hand-thumbs-up text-decoration-none" onclick=""> Curtir</button>
+                            <button class="btn  bi-chat text-decoration-none " onclick=""> Comentar</button>
+                            <button class="btn bi-share text-decoration-none " onclick=""> Compartilhar</button>
                         </div>
                     </div>
                 </div>
                 <div class="px-3">
-                    <div class="card w-100 bg-body-tertiary mb-3" action="#">
+                    <div class="card shadow w-100 bg-body-tertiary mb-3" action="#">
                         <div class="d-flex mt-3">
                             <img class="img-fluid rounded-circle mx-3 perfil" src="./MInha foto.jpeg"
                                 alt="Imagem de perfil">
@@ -143,15 +146,15 @@
                         </div>
                         <p class="m-3 ">Foi um projeto desafiador mais muito interessante</p>
                         <hr class="mx-3">
-                        <div class="d-flex justify-content-around pb-3">
-                            <a class="bi-hand-thumbs-up text-decoration-none interaction-color" onclick=""> Curtir</a>
-                            <a class="bi-chat text-decoration-none interaction-color" onclick=""> Comentar</a>
-                            <a class="bi-share text-decoration-none interaction-color" onclick=""> Compartilhar</a>
+                        <div class="d-flex justify-content-around pb-2">
+                            <button class="btn bi-hand-thumbs-up text-decoration-none" onclick=""> Curtir</button>
+                            <button class="btn bi-chat text-decoration-none" onclick=""> Comentar</button>
+                            <button class="btn bi-share text-decoration-none" onclick=""> Compartilhar</button>
                         </div>
                     </div>
                 </div>
                 <div class="px-3">
-                    <div class="card w-100 bg-body-tertiary mb-3" action="#">
+                    <div class="card shadow w-100 bg-body-tertiary mb-3" action="#">
                         <div class="d-flex mt-3">
                             <img class="img-fluid rounded-circle mx-3 perfil" src="./MInha foto.jpeg"
                                 alt="Imagem de perfil">
@@ -162,24 +165,24 @@
                         </div>
                         <p class="m-3 ">Mas foi uma experiancia que me agregou muito</p>
                         <hr class="mx-3">
-                        <div class="d-flex justify-content-around pb-3">
-                            <a class="bi-hand-thumbs-up text-decoration-none interaction-color" onclick=""> Curtir</a>
-                            <a class="bi-chat text-decoration-none interaction-color" onclick=""> Comentar</a>
-                            <a class="bi-share text-decoration-none interaction-color" onclick=""> Compartilhar</a>
+                        <div class="d-flex justify-content-around pb-2">
+                            <button class="btn bi-hand-thumbs-up text-decoration-none" onclick=""> Curtir</button>
+                            <button class="btn bi-chat text-decoration-none" onclick=""> Comentar</button>
+                            <button class="btn bi-share text-decoration-none" onclick=""> Compartilhar</button>
                         </div>
                     </div>
                 </div>
         </section>
         <section class="d-none d-lg-block col-lg-2 mt-4 ">
-            <div class="card bg-body-tertiary p-3">
+            <div class="card shadow bg-body-tertiary p-3">
                 <h3 class="">Trends</h3>
                 <nav>
-                    <ul class="list-unstyled ">
-                        <li><a class="text-primary " href="#">#Profile</a></li>
-                        <li><a class="text-primary " href="#">#Groups</a></li>
-                        <li><a class="text-primary " href="#">#Projects</a></li>
-                        <li><a class="text-primary " href="#">#Events</a></li>
-                        <li><a class="text-primary " href="#">#Saved</a></li>
+                    <ul class="nav flex-column ">
+                        <li><a class="text-primary " href="#">#Bootstrap</a></li>
+                        <li><a class="text-primary " href="#">#HTML</a></li>
+                        <li><a class="text-primary " href="#">#JavaScript</a></li>
+                        <li><a class="text-primary " href="#">#SASS</a></li>
+                        <li><a class="text-primary " href="#">#Vite</a></li>
                     </ul>
                 </nav>
             </div>
@@ -202,8 +205,8 @@
             </div>
         </section>
     </main>
-    <footer>
-
+    <footer class="bg-body-tertiary text-center py-3 mt-3">
+        <div>&copy; Feito por Arthur Albuquerque</div>
     </footer>
 </body>
 
