@@ -37,10 +37,6 @@ img{
 }
 
 
-.interaction-color{
-    color:#000000;
-}
-
 #post-button{
     cursor: pointer;
 }
@@ -49,8 +45,12 @@ footer{
     align-items: center;
 }
 
-[data-bs-theme='dark'] .interaction-color {
-    color: #ffffff;
+.btn-action{
+    &:hover,
+    &:focus,
+    &:active{
+        background-color: var(--#{$prefix}body-bg);
+    }
 }
 
 

@@ -4,8 +4,7 @@ $primary:#63cbf1;
 $light:#dbdbdb;
 $dark:#1e2328;
 $white:#e9ecef;
-$input-border-radius: 0.75rem;
-$btn-border-radius: 99rem;
+
 $spacer: 1.25rem;
 
 $dropdown-item-padding-y: $spacer * .5;
@@ -18,3 +17,8 @@ $box-shadow: 0 0.25rem 0.25rem rgb(0, 0, 0,0.2);
 $modal-content-border:1rem;
 $modal-header-border-color: transparent;
 $modal-footer-border-color: var(--#{$prefix}tertiary-color);
+
+$input-border-radius: 0.75rem;
+
+$btn-border-radius: 99rem;
+$btn-link-hover-color: var(--#{$prefix}primary-bg);
