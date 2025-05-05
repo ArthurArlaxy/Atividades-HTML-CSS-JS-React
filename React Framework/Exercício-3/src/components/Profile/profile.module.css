@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #dfdfdf;
+    box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.467);
+    border-radius: 1rem;
+
+    text-align: center;
+
+    width: 22rem;
+    margin: 1rem auto;
+    padding-bottom: 1rem ;
+}
+
+.container hr{
+    border: 1px solid #a7beff;
+}
+
+.container img{
+    border-radius: 999px;
+    width: 10rem;
+    margin: 1rem auto;
+}
