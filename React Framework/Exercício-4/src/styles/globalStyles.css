@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 1.3rem;
+}
+
+html{
+    display: grid;
+    height: 100vh;
+    place-content: center;
+    text-align: center;
+    background-color: #3f3f3f;
+    color: #FFF;
+}
+div{
+    margin: 1rem;
+}
+
+input{
+    background-color: #020202;
+    color:#FFF;
+    padding: .4rem .8rem;
+    margin:0 .4rem;
+    border-radius: 8px;
+    border: 1px solid #FFF;
+}
