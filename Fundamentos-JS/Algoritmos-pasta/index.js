@@ -1,18 +1,16 @@
-const numeros = [2,4,9,7,10,2,2]
+const numeros = [-3,-4,-21,-7,-10,-20,-2]
 
 function soma(num=[]){
-    let total = 0
     if (num.length === 0){
         return 0
     }
-    return total += num.pop() + soma(num)
+    return num.pop() + soma(num)
 }
 
 console.log
 (soma([...numeros]))
 
 function count(nums){
-    let total = 0
     if (nums.length === 0){
         return 0
     }
@@ -21,3 +19,19 @@ function count(nums){
 }
 
 console.log(count([...numeros]))
+
+
+function maxNum(nums){
+    let bigger = nums[0]
+    function bigest(nums){
+        if (nums.length === 0){
+            return bigger
+        }
+        let numAtual = nums.pop()
+        bigger = bigger > numAtual? bigger: numAtual
+    
+        return bigest(nums)
+    }
+    return bigest(nums)
+}
+console.log(maxNum([...numeros]))
