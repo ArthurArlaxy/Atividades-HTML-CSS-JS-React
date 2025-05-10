@@ -1,4 +1,4 @@
-const numeros = [-3,-4,-21,-7,-10,-20,-2]
+const numeros = [3,4,21,7,10,20,2]
 
 function soma(num=[]){
     if (num.length === 0){
@@ -35,3 +35,19 @@ function maxNum(nums){
     return bigest(nums)
 }
 console.log(maxNum([...numeros]))
+
+function order([...list]){
+    if (list.length <= 1 ){
+        return list[0]
+    }
+    let pivo = list[Math.floor(Math.random()*list.length)]
+    let bigger = []
+    let less = []
+    for (let i of list){
+        if (i === pivo) continue
+        i > pivo ? bigger.push(i): less.push(i)
+    }
+    return [order(less), pivo, order(bigger)]
+}
+
+console.log(order(numeros))

@@ -1,0 +1,12 @@
+.game{
+    display: flex;
+    gap:2rem;
+    padding:1rem;
+    background-color: #464646;
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+
+img{
+    height: 10rem;
+}

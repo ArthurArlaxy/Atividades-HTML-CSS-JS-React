@@ -1,6 +1,8 @@
+import styles from "./game.module.css"
+
 export function Game({title, cover, onRemove}){
     return (
-    <div>
+    <div className={styles.game}>
         <img src={cover} alt={title} />
         <div>
             <h2>{title}</h2>
