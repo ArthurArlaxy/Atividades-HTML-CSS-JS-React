@@ -13,6 +13,7 @@ function App() {
         coments.map((coment => (
           <div key={coment.id}>
             <h3>{coment.email}</h3>
+            <p>{coment.createdAt.toLocaleString()}</p>
             <p>{coment.coment}</p>
           </div>
         ))) 

@@ -6,9 +6,10 @@ export function comentsFunction(){
 
     const addComent = ({email, coment} ) => {
         const id = Math.floor(Math.random()*100000)
-        const newComent = { id, email, coment}
+        const createdAt = new Date()
+        const newComent = { id, email, createdAt, coment,}
         setComents( state => {
-            const newStateComents = [...state, newComent]
+            const newStateComents = [ newComent,...state]
             return newStateComents
         })
     }
