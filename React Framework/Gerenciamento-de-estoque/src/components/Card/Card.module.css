@@ -1,0 +1,7 @@
+.card{
+    flex: 1;
+    display: grid;
+    place-content:center;
+    background: #000;
+    border-radius: .5rem;
+}

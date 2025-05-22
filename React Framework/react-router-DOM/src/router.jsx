@@ -1,5 +1,5 @@
 import {createBrowserRouter,} from 'react-router-dom';
-import { MainLayout } from "./pages/Mainlayout";
+import { MainLayout } from "./components/Mainlayout";
 import { Home } from './pages/Home';
 import { Products } from './pages/Products';
 import { Cart } from './pages/Cart';
