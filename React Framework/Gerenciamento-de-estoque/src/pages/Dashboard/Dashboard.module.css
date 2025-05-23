@@ -1,6 +1,5 @@
-section{
+.listContainer {
     display: flex;
-    gap: 1rem;
-    text-align: center;
-
+    gap: 1rem;          
+    align-items: start;
 }

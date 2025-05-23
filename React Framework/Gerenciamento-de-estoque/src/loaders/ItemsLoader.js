@@ -14,7 +14,8 @@ export function ItemsLoader(){
     const addItem = ( name, quantity, price, category, description) =>{
         const id = Math.floor(Math.random()*100000)
         const date = new Date().toLocaleDateString("pt-BR")
-        const item = {id,name, quantity, price,category, date, description }
+        const updateDate = date
+        const item = {id,name, quantity, price,category, date, updateDate, description }
         setItems(state =>{
             const newItems = [item,...state]
             localStorage.setItem("stock-items", JSON.stringify(newItems))
@@ -30,7 +31,25 @@ export function ItemsLoader(){
         })
     }
     
+    const updateItem = (id,name, quantity, price, category, description ) => {
+        const updateDate = new Date().toLocaleDateString("pt-BR")
+        setItems(state => {
+            const newItems = state.map(item => item.id === id ? {
+            ...item,
+            name,
+            quantity,
+            price,
+            category,
+            updateDate,
+            description
+        }
+            :item)
+        
+        localStorage.setItem("stock-items", JSON.stringify(newItems))
+        return newItems
+        })
+    }
 
-    return { items , addItem, removeItem}
+    return { items , addItem, removeItem, updateItem}
 }
 

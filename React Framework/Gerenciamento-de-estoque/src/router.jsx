@@ -6,6 +6,7 @@ import { ItemsLayout } from "./pages/ItemsLayout";
 import { Items } from "./pages/Items";
 import { Item } from "./pages/Item";
 import { ItemLoader } from "./loaders/ItemLoader";
+import { UpdateItem } from "./pages/UpdateItems";
 
 export const router = createBrowserRouter([
     {
@@ -25,9 +26,10 @@ export const router = createBrowserRouter([
                 element:<NewItem/>
             },{
                 path:"/itens/:itemId",
-                loader: ItemLoader,
                 element:<Item/>,
-                errorElement:<Error/>
+            },{
+                path:"/itens/update/:itemId",
+                element:<UpdateItem/>
             }]
         }]
     }

@@ -4,14 +4,14 @@ export function MainLayout(){
     return(
         <>
             <header>
-                <h2>React Arthur Stock</h2>
+                <h2> 📦React Arthur Stock</h2>
                 <nav>
-                    <Link to="/">Início</Link>
-                    <Link to="/itens">Itens</Link>
+                    <Link className="link" to="/">Início</Link>
+                    <Link className="link" to="/itens">Itens</Link>
                 </nav>
             </header>
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
             <footer>
                 <p>Feito com React e React Router, por Arthur Albuquerque </p>

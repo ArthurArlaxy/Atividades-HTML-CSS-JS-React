@@ -1,6 +1,6 @@
 import styles from "./Card.module.css"
 
-export function Card({ text, number = 0  }){
+export function Card({ text, number = null  }){
     return(
         <div className={styles.card}>
             <p>{text}</p>   
@@ -8,3 +8,12 @@ export function Card({ text, number = 0  }){
         </div>
     )
 }
+
+export function CardItem({ text }){
+    return(
+        <div className={styles.cardItem}>
+            <p>{text}</p>   
+        </div>
+    )
+}
+
