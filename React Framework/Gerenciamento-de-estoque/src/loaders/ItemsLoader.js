@@ -24,6 +24,10 @@ export function ItemsLoader(){
     }
     
     const removeItem = (id) =>{
+        const confirmado = confirm(`Deseja mesmo excluir ${items.find(item => item.id === id).name}`)
+        if (!confirmado){
+            return 
+        }
         setItems(state => {
             const newItems = state.filter(item => item.id !== id)
             localStorage.setItem("stock-items", JSON.stringify(newItems))

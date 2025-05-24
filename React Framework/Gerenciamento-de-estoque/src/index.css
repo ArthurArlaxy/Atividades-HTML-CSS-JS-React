@@ -45,7 +45,15 @@ nav{
 }
 
 .link:hover{
-  color: #9971f7;
+  color: #ccb4ff;
+}
+
+.mainNavigation{
+  color:#696969
+}
+
+.mainNavigation.active{
+  color: #ffffff;
 }
 
 .linkItems {

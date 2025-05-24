@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 export function MainLayout(){
     return(
@@ -6,8 +6,8 @@ export function MainLayout(){
             <header>
                 <h2> 📦React Arthur Stock</h2>
                 <nav>
-                    <Link className="link" to="/">Início</Link>
-                    <Link className="link" to="/itens">Itens</Link>
+                    <NavLink className="link mainNavigation" to="/">Início</NavLink>
+                    <NavLink className="link mainNavigation" to="/itens">Itens</NavLink>
                 </nav>
             </header>
             <main>
