@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended:true }))
 // Configuração das rotas
 app.use(router)
 
+// Configuração de arquivos estáticos
+app.use(express.static('public'))
+
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => console.log(`Servidor rodando com sucesso!\nLink: http://localhost:${PORT} `))
