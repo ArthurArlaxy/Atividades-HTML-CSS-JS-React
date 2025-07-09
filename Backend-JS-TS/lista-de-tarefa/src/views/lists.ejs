@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-Active | Lists</title>
+</head>
+
+<body>
+    <h1>Todas as Listas</h1>
+    <button><a href="/lists/create">Cria Listas</a></button>
+    <% if (lists) { %>
+        <% lists.forEach(list=> { %>
+            <div class="list-div">
+                <a href="/lists/<%=list%>" class="list"><%= list %><a>
+                <a href="/lists/delete/<%=list%> class="btn-delete">Excluir</a>
+            </div>
+            <% }) %>
+                <% } %>
+
+</body>
+
+</html>
