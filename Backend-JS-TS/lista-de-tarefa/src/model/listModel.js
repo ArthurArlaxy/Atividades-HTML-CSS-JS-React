@@ -7,6 +7,9 @@ const listModel = {
         const lists = fs.readdirSync(path.join(__dirname, '..', 'db')) 
         return lists
     },
+    getListById(listName){
+        
+    },
     createList(listName){
         const dirPath = path.join(__dirname,'..','db',listName)
 

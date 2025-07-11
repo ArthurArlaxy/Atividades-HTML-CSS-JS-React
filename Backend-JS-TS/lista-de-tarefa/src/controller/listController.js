@@ -19,6 +19,9 @@ const listController = {
         const { listName } = req.body
         listModel.createList(listName)
         res.redirect('/lists/create')
+    },
+    showList: (req, res) => {
+       const listName = req.params.listName  
     }
 }
 
