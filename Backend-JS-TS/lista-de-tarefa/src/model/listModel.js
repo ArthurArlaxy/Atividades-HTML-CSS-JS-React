@@ -7,15 +7,16 @@ const listModel = {
         const lists = fs.readdirSync(path.join(__dirname, '..', 'db')) 
         return lists
     },
-    createList(title){
-        const dirPath = fs.mkdirSync(path.join(__dirname,'..','db',title),)
+    createList(listName){
+        const dirPath = path.join(__dirname,'..','db',listName)
 
-        if(fs.exisysSync(dirPath)){
-            return alert('Lista com esse nome já existe!')
+        if(fs.existsSync(dirPath)){
+            console.log('Lista com esse nome já existe!')
+            
         } 
 
         fs.mkdirSync(dirPath,{ recursive:true })
-        alert('Lista criada com sucesso!')
+        console.log('Lista criada com sucesso!')
     },
     
 }

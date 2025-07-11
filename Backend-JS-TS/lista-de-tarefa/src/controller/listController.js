@@ -5,11 +5,21 @@ const listController = {
     index: (req, res) => {
         res.render('index')
     },
-    // GET /list
+    // GET /lists
     lists: (req, res) => {
         const lists = listModel.getAllLists()
         res.render('lists', { lists })
-    } 
+    },
+    // GET /lists/create
+    createListPage: (req,res) => {
+        res.render('create')
+    },
+    // POST /lists/create
+    createList: (req,res) => {
+        const { listName } = req.body
+        listModel.createList(listName)
+        res.redirect('/lists/create')
+    }
 }
 
 module.exports = listController

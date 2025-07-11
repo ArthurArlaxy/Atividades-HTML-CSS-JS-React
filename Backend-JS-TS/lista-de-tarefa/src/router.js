@@ -5,5 +5,7 @@ const router = express.Router()
 
 router.get('/', listController.index)
 router.get('/lists', listController.lists)
+router.get('/lists/create', listController.createListPage)
+router.post('/lists/created', listController.createList)
 
 module.exports = router
