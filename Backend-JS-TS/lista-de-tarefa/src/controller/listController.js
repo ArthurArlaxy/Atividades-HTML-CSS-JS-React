@@ -18,10 +18,18 @@ const listController = {
     createList: (req,res) => {
         const { listName } = req.body
         listModel.createList(listName)
-        res.redirect('/lists/create')
+        res.redirect('/lists')
     },
     showList: (req, res) => {
        const listName = req.params.listName  
+       const tasks = listModel.getListById(listName)
+       res.render('list',{ listName,tasks })
+    },
+    createTask: (req, res) =>{
+        const listName = req.params.listName
+        const { taskName } = req.body
+        listModel.createTask(listName,taskName)
+        res.redirect(`/lists/${listName}`)
     }
 }
 
