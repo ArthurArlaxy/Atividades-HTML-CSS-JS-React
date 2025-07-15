@@ -30,6 +30,13 @@ const listController = {
         const { taskName } = req.body
         listModel.createTask(listName,taskName)
         res.redirect(`/lists/${listName}`)
+    },
+    concludeTask: (req, res) =>{
+        const listName = req.params.listName
+        const { taskName } = req.body
+        
+        listModel.concludeTask(listName,taskName)
+        res.redirect(`/lists/${listName}`)
     }
 }
 

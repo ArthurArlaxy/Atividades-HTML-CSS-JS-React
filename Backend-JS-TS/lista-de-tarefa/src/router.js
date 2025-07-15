@@ -9,5 +9,6 @@ router.get('/lists/create', listController.createListPage)
 router.post('/lists/created', listController.createList)
 router.get('/lists/:listName',listController.showList)
 router.post('/lists/:listName/createTask',listController.createTask)
+router.post('/lists/:listName/concludeTask', listController.concludeTask)
 
 module.exports = router

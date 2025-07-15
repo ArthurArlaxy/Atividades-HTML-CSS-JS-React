@@ -13,7 +13,9 @@
     </form>
     <ul>
       <% tasks.forEach(task => { %>
-            <li><%=task%></li>
+          <li style="color: <%= task.isDone ? 'green' : 'black' %>">
+            <%=task.name%>
+          </li>
         <% }) %>
     </ul>
     <a href="/lists">voltar</a>
