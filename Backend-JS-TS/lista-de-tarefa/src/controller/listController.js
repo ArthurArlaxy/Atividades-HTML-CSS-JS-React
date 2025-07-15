@@ -21,9 +21,9 @@ const listController = {
         res.redirect('/lists')
     },
     showList: (req, res) => {
-       const listName = req.params.listName  
-       const tasks = listModel.getListById(listName)
-       res.render('list',{ listName,tasks })
+        const listName = req.params.listName  
+        const tasks = listModel.getListById(listName)
+        res.render('list',{ listName,tasks })
     },
     createTask: (req, res) =>{
         const listName = req.params.listName
@@ -37,6 +37,11 @@ const listController = {
         
         listModel.concludeTask(listName,taskName)
         res.redirect(`/lists/${listName}`)
+    },
+    deleteList: (req, res) => {
+        const listName = req.params.listName
+        listModel.deleteList(listName)
+        res.redirect('/lists')
     }
 }
 

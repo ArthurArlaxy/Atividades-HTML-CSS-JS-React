@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>B-Active | <%=listName%></title>
-  </head>
-  <body>
-    <h1><%=listName%></h1>
-    <form action="/lists/<%=listName%>/createTask" method="POST">
-        <input type="text" name="taskName" id="taskName" placeholder="Digite a tarefa deseja adicionar.">
-        <button type="submit">Criar</button>
-    </form>
-    <ul>
-      <% tasks.forEach(task => { %>
-          <li style="color: <%= task.isDone ? 'green' : 'black' %>">
-            <%=task.name%>
-          </li>
-        <% }) %>
-    </ul>
-    <a href="/lists">voltar</a>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css">
+  <title> B-Active | <%=listName%>
+  </title>
+</head>
+
+<body>
+  <h1>
+    <%=listName%>
+  </h1>
+  <form action="/lists/<%=listName%>/createTask" method="POST">
+    <input type="text" name="taskName" id="taskName" placeholder="Digite a tarefa deseja adicionar.">
+    <button type="submit">Criar</button>
+  </form>
+  <ul>
+    <% tasks.forEach(task=> { %>
+      <li class="<%= task.isDone ? 'done' : 'pending' %>">
+        <%= task.name %>
+        <% if (!task.isDone) { %>
+          <form action="/lists/<%=listName%>/concludeTask" method="POST">
+            <input type="text" name="taskName" id="taskName" value="<%=task.name%>" hidden>
+            <button type="submit">✅Concluir</button>
+          </form>
+        <% } %>
+      </li>
+      <% }) %>
+  </ul>
+  <a href="/lists">voltar</a>
+</body>
+
 </html>

@@ -14,11 +14,13 @@
         <% lists.forEach(list=> { %>
             <div class="list-div">
                 <a href="/lists/<%=list%>" class="list"><%= list %><a>
-                <a href="/lists/delete/<%=list%> class="btn-delete">Excluir</a>
+                <form action="/lists/delete/<%=list%>" method="POST">
+                    <button type="submit">excluir</button>
+                </form>
             </div>
-            <% }) %>
-                <% } %>
-
+        <% }) %>
+    <% } %>
+    
 </body>
 
 </html>

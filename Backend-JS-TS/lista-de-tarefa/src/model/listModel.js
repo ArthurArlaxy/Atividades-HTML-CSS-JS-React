@@ -3,9 +3,19 @@ const fs = require("node:fs");
 
 const listModel = {
   getAllLists() {
-    const lists = fs.readdirSync(path.join(__dirname, "..", "db"));
+    const dirs = fs.readdirSync(path.join(__dirname, "..", "db"));
+
+    const lists = []
+
+    dirs.forEach(dir => {
+      if (!dir.includes('-concluído')){
+        lists.push(dir)
+      }
+    })
+
     return lists;
   },
+
   getListById(listName) {
     const pendingPath = path.join(__dirname, "..", "db", listName);
     const donePath = path.join(__dirname, "..", "db", `${listName}-concluído`);
@@ -27,6 +37,7 @@ const listModel = {
 
     return tasks;
   },
+
   createList(listName) {
     const dirPath = path.join(__dirname, "..", "db", listName);
 
@@ -37,14 +48,16 @@ const listModel = {
     fs.mkdirSync(dirPath, { recursive: true });
     console.log("Lista criada com sucesso!");
   },
+
   createTask(listName, taskName) {
     const dirPath = path.join(__dirname, "..", "db", listName);
     const filePath = path.join(dirPath, taskName);
     fs.writeFileSync(filePath, "");
   },
+
   concludeTask(listName, taskName) {
-    const fromPath = path.join(__dirname, "..", listName, taskName);
-    const toFolder = path.join(__dirname, "..", `${listName}-concluído`);
+    const fromPath = path.join(__dirname, "..", "db",listName, taskName);
+    const toFolder = path.join(__dirname, "..","db", `${listName}-concluído`);
     const newPath = path.join(toFolder, taskName);
 
     if (!fs.existsSync(toFolder)) {
@@ -53,6 +66,18 @@ const listModel = {
 
     fs.renameSync(fromPath, newPath);
   },
+
+  deleteList(listName){
+    const dirPath = path.join(__dirname, "..", "db", listName);
+    const donePath = path.join(__dirname,'..','db',`${listName}-concluído`)
+
+    fs.rmSync(dirPath,{ recursive: true, force: true })
+
+    if (fs.existsSync(donePath)){
+      fs.rmSync(donePath,{ recursive: true, force: true })
+    }
+  }
+
 };
 
 module.exports = listModel;
