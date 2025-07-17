@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>B-Active | Lists</title>
-</head>
+  </head>
 
-<body>
+  <body class="container">
     <h1>Todas as Listas</h1>
-    <button><a href="/lists/create">Cria Listas</a></button>
     <% if (lists) { %>
+    <table class="list-table">
+      <tbody>
         <% lists.forEach(list=> { %>
-            <div class="list-div">
-                <a href="/lists/<%=list%>" class="list"><%= list %><a>
-                <form action="/lists/delete/<%=list%>" method="POST">
-                    <button type="submit">excluir</button>
-                </form>
-            </div>
+        <tr>
+            <td class="list-div">
+            <a href="/lists/<%=list%>" class="list"><%= list %></a>
+            <form action="/lists/delete/<%=list%>" method="POST">
+                <button class="btn-exclude" type="submit">excluir</button>
+            </form>
+            </td>
+        </tr>
         <% }) %>
+      </tbody>
+    </table>
+    <% } else { %>
+    <h2>Você ainda não possuí listas</h2>
     <% } %>
-    
-</body>
-
+    <a class="btn-primary" href="/lists/create">Cria Listas</a>
+  </body>
 </html>
