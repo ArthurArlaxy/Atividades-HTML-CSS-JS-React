@@ -9,28 +9,33 @@
   </title>
 </head>
 
-<body>
+<body class="container">
   <h1>
     <%=listName%>
   </h1>
-  <form action="/lists/<%=listName%>/createTask" method="POST">
-    <input type="text" name="taskName" id="taskName" placeholder="Digite a tarefa deseja adicionar.">
+  <form action="/lists/<%=listName%>/createTask" method="POST" class="form-create">
+    <input type="text" name="taskName" id="taskName" class="input-create"
+      placeholder="Digite a tarefa deseja adicionar.">
     <button type="submit">Criar</button>
   </form>
-  <ul>
-    <% tasks.forEach(task=> { %>
-      <li class="<%= task.isDone ? 'done' : 'pending' %>">
-        <%= task.name %>
-        <% if (!task.isDone) { %>
-          <form action="/lists/<%=listName%>/concludeTask" method="POST">
-            <input type="text" name="taskName" id="taskName" value="<%=task.name%>" hidden>
-            <button type="submit">✅Concluir</button>
-          </form>
-        <% } %>
-      </li>
-      <% }) %>
-  </ul>
-  <a href="/lists">voltar</a>
+  <table class="list-table">
+    <tbody>
+      <tr>
+        <% tasks.forEach(task=> { %>
+          <td class="list-div <%= task.isDone ? 'done' : 'pending' %>">
+            <%= task.name %>
+              <% if (!task.isDone) { %>
+                <form action="/lists/<%=listName%>/concludeTask" method="POST">
+                  <input type="text" name="taskName" id="taskName" value="<%=task.name%>" hidden>
+                  <button type="submit" class="btn-complete">✅Concluir</button>
+                </form>
+              <% } %>
+          </td>
+          <% }) %>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/lists" class="btn-primary">voltar</a>
 </body>
 
 </html>

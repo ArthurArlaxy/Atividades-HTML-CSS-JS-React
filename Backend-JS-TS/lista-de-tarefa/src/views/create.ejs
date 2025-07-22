@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="/style.css">
     <title>B-Active | Criação</title>
 </head>
-<body>
+<body class="container">
     <h1>Nova Lista de Tarefas</h1>
-    <form action="/lists/created" method="POST">
-        <input type="text" name="listName" id="listName" class="input">
+    <form action="/lists/created" method="POST" class="form-create">
+        <input type="text" name="listName" id="listName" class="input-create">
         <button type="submit">Criar</button>
     </form>
-    <a href="/lists" class="link"></a>
+    <a class="btn-primary" href="/lists">Voltar</a>
 </body>
 </html>

@@ -10,11 +10,13 @@
 }
 
 :root{
-    --primary-color:#95a868;
-    --secondary-color:#452c18;
-    --tertiary-color:#FFF;
-    --contrast-color:#000;
+    --primary-color:#2a2829;
+    --secondary-color:#b9d7d9;
+    --tertiary-color:#000;
+    --contrast-color:#FFF;
     --delete-color:#cc7254;
+    --complete-color:#b9d7d9;
+    --pendent-color:#7b3b3b;
 }
 
 .hero{
@@ -32,8 +34,8 @@
     background-color: var(--secondary-color);
     color: var(--tertiary-color);
     text-decoration: none;
-    margin: 1rem 0;
-    max-width: 9rem;
+    margin: 1.6rem 0;
+    max-width: 8.5rem;
 }
 
 .btn-exclude{
@@ -44,8 +46,15 @@
     text-decoration: none;
 }
 
+.btn-complete{
+    border: 1px solid var(--complete-color);
+    border-radius: .4rem;
+    padding: .3rem .6rem;
+    background-color: var(--complete-color);
+    text-decoration: none;
+}
+
 h1{
-    font-family: 'Cardo';
     font-size: 3rem;
     padding:1rem 0;
 }
@@ -69,6 +78,36 @@ h1{
     width: 10rem;
     font-size: 1.3rem;
     text-decoration: none;
+}
+
+.input-create{
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.8rem 0rem 0rem 0.8rem;
+    padding: 1rem 1rem;
+    flex-grow: 1;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-create{
+    padding: 1rem 0;
+}
+
+button{
+    background-color: var(--contrast-color);
+    color: var(--tertiary-color);
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0 0.8rem 0.8rem 0;
+}
+
+input:focus {
+    border: 1px solid var(--secondary-color);
+    outline: none;
+    box-shadow: none;
 }
 
 .container{
