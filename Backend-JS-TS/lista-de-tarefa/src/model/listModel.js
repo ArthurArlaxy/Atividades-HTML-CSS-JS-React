@@ -66,6 +66,13 @@ const listModel = {
 
     fs.renameSync(fromPath, newPath);
   },
+  undoTask(listName, taskName) {
+    const fromPath = path.join(__dirname, "..", "db",`${listName}-concluído`, taskName);
+    const toFolder = path.join(__dirname, "..","db", listName);
+    const newPath = path.join(toFolder, taskName);
+
+    fs.renameSync(fromPath, newPath);
+  },
 
   deleteList(listName){
     const dirPath = path.join(__dirname, "..", "db", listName);

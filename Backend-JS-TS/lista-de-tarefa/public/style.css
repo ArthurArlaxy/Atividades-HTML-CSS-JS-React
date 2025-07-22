@@ -14,7 +14,7 @@
     --secondary-color:#b9d7d9;
     --tertiary-color:#000;
     --contrast-color:#FFF;
-    --delete-color:#cc7254;
+    --delete-color:#ff4000;
     --complete-color:#b9d7d9;
     --pendent-color:#7b3b3b;
 }
@@ -40,7 +40,7 @@
 
 .btn-exclude{
     border: 1px solid var(--delete-color);
-    border-radius: .4rem;
+    border-radius: 0;
     padding: .3rem .6rem;
     background-color: var(--delete-color);
     text-decoration: none;
@@ -48,7 +48,7 @@
 
 .btn-complete{
     border: 1px solid var(--complete-color);
-    border-radius: .4rem;
+    border-radius: 0;
     padding: .3rem .6rem;
     background-color: var(--complete-color);
     text-decoration: none;
@@ -121,5 +121,5 @@ input:focus {
 }
 
 .done{
-    color: green;
+    background-color: rgb(66, 99, 66);
 }

@@ -27,9 +27,14 @@
               <% if (!task.isDone) { %>
                 <form action="/lists/<%=listName%>/concludeTask" method="POST">
                   <input type="text" name="taskName" id="taskName" value="<%=task.name%>" hidden>
-                  <button type="submit" class="btn-complete">✅Concluir</button>
+                  <button type="submit" class="btn-complete">Concluir</button>
                 </form>
-              <% } %>
+              <% } else {%>
+                <form action="/lists/<%=listName%>/undoTask" method="POST">
+                  <input type="text" name="taskName" id="taskName" value="<%=task.name%>" hidden>
+                  <button type="submit" class="btn-exclude">Desfazer</button>
+                </form>
+                <% } %>
           </td>
           <% }) %>
       </tr>

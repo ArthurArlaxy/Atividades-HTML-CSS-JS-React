@@ -38,6 +38,13 @@ const listController = {
         listModel.concludeTask(listName,taskName)
         res.redirect(`/lists/${listName}`)
     },
+    undoTask: (req, res) =>{
+        const listName = req.params.listName
+        const { taskName } = req.body
+        
+        listModel.undoTask(listName,taskName)
+        res.redirect(`/lists/${listName}`)
+    },
     deleteList: (req, res) => {
         const listName = req.params.listName
         listModel.deleteList(listName)
