@@ -158,7 +158,7 @@ const playlistController = {
     playlist.tag = newTag;
     res.json(playlist);
   },
-  // DELETE /playlists/:id/delete
+  // DELETE /playlists/:name/delete
   delete: (req, res) => {
     const { name } = req.params;
     const playlist = playlists.findIndex((playlist) => playlist.name === name);
