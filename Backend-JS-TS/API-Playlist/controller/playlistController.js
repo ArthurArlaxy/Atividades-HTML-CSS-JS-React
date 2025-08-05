@@ -158,7 +158,7 @@ const playlistController = {
     playlist.tag = newTag;
     res.json(playlist);
   },
-  // DELETE /playlists/:id/delete
+  // DELETE /playlists/:name/delete
   delete: (req, res) => {
     const { name } = req.params;
     const playlist = playlists.findIndex((playlist) => playlist.name === name);
@@ -167,9 +167,64 @@ const playlistController = {
       return res.status(404).json({ message: "Playlist not found" });
     }
 
-    playlists.splice(playlist,1)
+    playlists.splice(playlist, 1)
     res.status(204).end()
   },
+  //POST /playlists/:name/addMusic
+  addMusic: (req, res) => {
+    const { name } = req.params
+    const { musics } = req.body
+    const playlist = playlists.find(playlist => playlist.name === name)
+
+    if (!playlist) {
+      return res.status(404).json({ message: "Playlist not found" });
+    }
+
+    if (!Array.isArray(musics)) {
+      return res.status(400).json({ message: "Error in music information" });
+    }
+
+    for (let i = 0; i < musics.length; i++) {
+      let music = musics[i];
+
+      let hasAllFields =
+        typeof music.title === "string" &&
+        typeof music.artist === "string" &&
+        typeof music.album === "string" &&
+        typeof music.year === "number";
+
+      if (!hasAllFields)
+        return res
+          .status(400)
+          .json({ message: "music has to be title, year, artist, album" });
+    }
+
+    playlist.musics.push(...musics)
+    res.status(201).json(playlist.musics)
+  },
+  // DELETE /playlists/:name/music/delete
+  deleteMusic: (req, res) => {
+    const { name } = req.params
+    const musicToDelete = req.body.music
+    const playlist = playlists.find(playlist => playlist.name === name)
+
+    if (!playlist) {
+      return res.status(404).json({ message: "Playlist not found" });
+    }
+
+    const musicIndex = playlist.musics.findIndex(music => 
+      music.title === musicToDelete.title &&
+      music.artist === musicToDelete.artist &&
+      music.album === musicToDelete.album &&
+      music.year === musicToDelete.year)
+    
+    if(musicIndex === -1){
+      return res.status(404).json({ message: "Music not found" });
+    }
+    
+    playlist.musics.splice(musicIndex,1)
+    res.status(200).json({ message: "music deleted sucessfuly"})
+  }
 };
 
 module.exports = playlistController;
