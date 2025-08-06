@@ -1,9 +1,9 @@
 function authMiddleware(req,res,next){
-    if(req.session.authenticated === false){
-        return res.redirect('/')
+    if(req.session.authenticated === true){
+        return next()
     }
 
-    next()
+    res.redirect('/')
 }
 
 module.exports = {authMiddleware}
