@@ -6,4 +6,13 @@ function authMiddleware(req,res,next){
     res.redirect('/')
 }
 
-module.exports = {authMiddleware}
+function adminMiddleware(req, res, next){
+    console.log(req.session.currentUser.role)
+    if (req.session.currentUser.role === 'Admin'){
+        return next()
+    }
+
+    res.redirect('/dashboard')
+}
+
+module.exports = {authMiddleware, adminMiddleware}

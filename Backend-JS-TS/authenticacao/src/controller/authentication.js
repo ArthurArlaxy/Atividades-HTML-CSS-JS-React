@@ -50,6 +50,9 @@ const authController = {
     logout: (req, res) => {
         req.session.destroy()
         res.redirect('/')
+    },
+    users: (req, res) => {
+        res.render('users', { users, user: req.session.currentUser })
     }
 }
 
