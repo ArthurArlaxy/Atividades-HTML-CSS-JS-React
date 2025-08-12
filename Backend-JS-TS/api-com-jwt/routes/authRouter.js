@@ -20,13 +20,12 @@ authRouter.post('/login', (req, res) => {
     const { username, password } = req.body
 
     const user = users.find(user => user.username === username)
+    
     if (!user || user.password !== password){
         res.status(400).json('Invalid credentials')
     }
 
-    const token = jwt.sign(user, secretKey,{
-        expiresIn : '1h'
-    })
+    const token = jwt.sign(user, secretKey,{ expiresIn : '1h' })
 
     res.status(200).json(token)
 })
