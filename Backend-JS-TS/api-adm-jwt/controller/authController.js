@@ -10,9 +10,9 @@ const authController = {
         const exists = users.findIndex(user => user.email === email)
 
         if(!username || !email || ! password) {
-            res.status(400).json({ message: "All the fields have to be filled"})
+            return res.status(400).json({ message: "All the fields have to be filled"})
         } else if(exists !== -1){
-            res.status(400).json({ message: "already exists an user with that email"})
+            return res.status(400).json({ message: "already exists an user with that email"})
         } 
         const newUser = { username, email, password, role: 'Standard'}
 
@@ -26,9 +26,9 @@ const authController = {
         const user = users.find(user => user.email === email)
 
         if( !email || ! password) {
-            res.status(400).json({ message: "All the fields have to be filled"})
+            return res.status(400).json({ message: "All the fields have to be filled"})
         }else if(!user || user.password !== password){
-            res.status(400).json({ message: "Invalid Credentials"})
+            return res.status(400).json({ message: "Invalid Credentials"})
         }
 
         const token = jwt.sign(user, secretKey, { expiresIn: "1h"})

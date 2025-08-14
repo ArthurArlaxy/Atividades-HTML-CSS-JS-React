@@ -1,21 +1,20 @@
 const jwt = require("jsonwebtoken");
 const secretKey = "secret";
 
-const authMiddleware = (req, res, next) => {
+const admMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    req.authenticatedUser = "Visitante";
-    next()
+    res.status(400).json({ message:"Authorization required"})
   }
-
-
 
   try {
     const token = authHeader.split(" ")[1];
     const user = jwt.verify(token, secretKey);
 
-    req.authenticatedUser = user;
+    if(user.role !== "Administrator"){
+        res.status(400).json({ massage: "Permission required"})
+    }
     
     next();
   } catch (error) {
@@ -24,4 +23,4 @@ const authMiddleware = (req, res, next) => {
 
 };
 
-module.exports = authMiddleware;
+module.exports = admMiddleware;
