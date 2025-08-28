@@ -1,10 +1,10 @@
 require('dotenv').config()
 const express = require('express')
-const router = require('./routes')
+const authRouter = require('./routes/authRouter')
 const app = express()
 
 app.use(express.json())
-app.use(router)
+app.use(authRouter)
 
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => console.log(`https://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`))
