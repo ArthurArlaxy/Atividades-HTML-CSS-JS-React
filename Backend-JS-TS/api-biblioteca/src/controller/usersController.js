@@ -28,7 +28,7 @@ const usersController = {
         
         if(!bcrypt.compareSync(password,user.password)) return res.status(400).json({message:"Invalid credentials"})
         
-        const payload = {id:user.id, name:user.name, email:user.email}
+        const payload = {id:user.id, name:user.name, email:user.email, role: user.role}
         const token = jwt.sign(payload,process.env.JWT_KEY, {expiresIn: '1d'})
         
         res.json(token)

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const HttpError = require('../error/httpError')
 
 const authMiddleware = (req,res,next) => {
     const header = req.headers.authorization
@@ -18,4 +19,13 @@ const authMiddleware = (req,res,next) => {
 
 }
 
-module.exports = authMiddleware
+const admMiddleware = (req,res,next) => {
+    if(req.user.role === 'Admin'){
+        next()
+    } else {
+        throw new HttpError(401,'Admin privileges required')
+    }
+
+}
+
+module.exports = {authMiddleware, admMiddleware}

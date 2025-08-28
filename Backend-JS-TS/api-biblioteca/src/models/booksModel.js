@@ -1,3 +1,4 @@
+const HttpError = require('../error/httpError')
 const uuid = require('uuid').v4
 
 const books = [
@@ -6,6 +7,37 @@ const books = [
 ]
 
 module.exports = {
-    getAllBooks: () => books
-    
+    getAllBooks: () => books.map(book => ({id:book.id, title:book.title})),
+
+    getBookByID: (id) => books.find(book => book.id === id),
+
+    createBook: (title, author, quantityAvailable) =>{
+
+        if( typeof title !== 'string' || typeof author !== 'string' || typeof quantityAvailable !== 'number'){
+            throw new HttpError(400, "Invalid Credentials")
+        } 
+
+        const newBook = {
+            id: uuid(),
+            title,
+            author,
+            quantityAvailable
+        }
+
+        books.push(newBook)
+        return newBook
+    },
+
+    updateBook: (id, fieldsToUpdate) => {
+        const bookIndex = books.findIndex(book => book.id === id)
+        if(bookIndex === -1) throw new HttpError(404, 'Book not found')
+        books[bookIndex] = {...books[bookIndex], ...fieldsToUpdate}
+        return books[bookIndex]
+    },
+    deleteBook: (id) => {
+        const bookIndex = books.findIndex(book => book.id === id)
+        if(bookIndex === -1) throw new HttpError(404, 'Book not found')
+        const deletedBook = books.splice(bookIndex,1)
+        return deletedBook
+    }
 }
