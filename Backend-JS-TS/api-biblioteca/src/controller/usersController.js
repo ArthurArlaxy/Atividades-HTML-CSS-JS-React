@@ -32,7 +32,7 @@ const usersController = {
         const token = jwt.sign(payload,process.env.JWT_KEY, {expiresIn: '1d'})
         
         res.json(token)
-    }
+    } 
 }
 
 module.exports = usersController

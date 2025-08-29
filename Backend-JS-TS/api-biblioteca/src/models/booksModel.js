@@ -39,5 +39,16 @@ module.exports = {
         if(bookIndex === -1) throw new HttpError(404, 'Book not found')
         const deletedBook = books.splice(bookIndex,1)
         return deletedBook
-    }
+    },
+    loanedBook: (id) => {
+        const bookIndex = books.findIndex(book => book.id === id)
+        if(bookIndex === -1) throw new HttpError(404, 'Book not found')
+        if(!books[bookIndex].quantityAvailable > 0) throw new HttpError(400, "Don't have available books")
+        books[bookIndex].quantityAvailable--
+    },
+    returnedBook:(id) => {
+        const bookIndex = books.findIndex(book => book.id === id)
+        if(bookIndex === -1) throw new HttpError(404, 'Book not found')
+        books[bookIndex].quantityAvailable++
+    },
 }
