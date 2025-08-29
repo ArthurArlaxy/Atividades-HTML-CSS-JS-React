@@ -25,6 +25,17 @@ const loanModel = {
         }
         return loan
     },
+    getLoansByUserID:(userID) => {
+        const usersLoans = loans.filter(loan => loan.userID === userID)
+        if(usersLoans.length === 0) return false
+        const today = new Date()
+        usersLoans.forEach(loan => {
+            if(!loan.isReturned){
+                loan.isLate = today > loan.dueDate
+            }
+        })
+        return usersLoans
+    },
 
     createLoan: (userID, bookID) => {
 

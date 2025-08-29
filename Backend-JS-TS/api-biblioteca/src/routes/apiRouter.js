@@ -10,9 +10,10 @@ apiRouter.post('/books', authMiddleware , admMiddleware,booksController.save)
 apiRouter.delete('/books/:id',authMiddleware , admMiddleware ,booksController.delete)
 apiRouter.put('/books/:id/update',authMiddleware, admMiddleware,booksController.update)
 
-apiRouter.get('/loans',authMiddleware, loansController.index)
-apiRouter.get('/loans/:id',authMiddleware, loansController.loan)
+apiRouter.get('/loans',authMiddleware, admMiddleware, loansController.index)
 apiRouter.post('/loans', authMiddleware, loansController.save)
+apiRouter.get('/loans/user', authMiddleware, loansController.usersLoans)
+apiRouter.get('/loans/:id',authMiddleware, admMiddleware, loansController.loan)
 apiRouter.put('/loans/:id/return', authMiddleware, loansController.returnLoan)
 
 

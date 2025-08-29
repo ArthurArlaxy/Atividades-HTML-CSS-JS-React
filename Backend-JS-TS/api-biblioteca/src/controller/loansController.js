@@ -13,6 +13,13 @@ const loansController = {
         if(!loan) throw new HttpError(404,"Loan not found")
         res.json(loan)
     },
+    usersLoans: (req, res) => {
+        const userID = req.user.id 
+        if(!userID) throw new HttpError(400, "Aunthorization required")
+        const userLoans = loanModel.getLoansByUserID(userID)
+        if(!userLoans) return res.json("You don't make any loans yet")
+        res.json(userLoans)
+    },
     save: (req,res) => {
         const { bookID } = req.body
         const userID  = req.user.id
