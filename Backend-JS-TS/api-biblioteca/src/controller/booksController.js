@@ -36,6 +36,8 @@ const booksController = {
         if(author) fieldsToUpdate.author = author
         if(quantityAvailable) fieldsToUpdate.quantityAvailable = quantityAvailable
 
+        if(Object.keys(fieldsToUpdate).length === 0) return res.status(400,"Bad request")
+
         const updatedBook = booksModel.updateBook(id,fieldsToUpdate)
         res.json(updatedBook)
     },

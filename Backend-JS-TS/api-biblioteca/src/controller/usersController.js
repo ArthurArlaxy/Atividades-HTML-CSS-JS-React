@@ -24,7 +24,7 @@ const usersController = {
         }
         
         const user = usersModel.getUserByEmail(email)
-        if(!user) return res.status(400).json('User not exists')
+        if(!user) return res.status(401).json('User not exists')
         
         if(!bcrypt.compareSync(password,user.password)) return res.status(400).json({message:"Invalid credentials"})
         
