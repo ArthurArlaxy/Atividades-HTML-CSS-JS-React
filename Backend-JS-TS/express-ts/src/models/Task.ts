@@ -1,3 +1,5 @@
+// Utilizamos Interface e Class em TypeScript
+
 interface TaskAttributes {
     id: number;
     title: string;

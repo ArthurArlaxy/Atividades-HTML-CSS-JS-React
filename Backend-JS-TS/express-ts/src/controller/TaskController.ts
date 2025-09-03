@@ -55,7 +55,7 @@ export class TaskController{
     // DELETE /tasks/:id
     delete: Handler = (req, res) => {
         const { id } = req.params
-        if (!id) throw new HttpError(400, "ID not mencioned")
+        if (!id) throw new HttpError(400, "ID not found")
         const deletedTask = Task.delete(+id)
         if(!deletedTask) throw new HttpError(404, 'Task not found')
         res.json(deletedTask)
