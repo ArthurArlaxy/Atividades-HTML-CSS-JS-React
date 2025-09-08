@@ -1,24 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 1.25rem;
-    font-family: 'Courier New', Courier, monospace;
+    font-family:"Montserrat";
     font-weight:600;
-    color: #ffffff;
+    color: #424242;
 }
 
 body{
     height: 100%;
     width: 100%;
-    background-color: #3a2d45;
+    background-color: #202020;
 }
 
 input{
-    background-color: #6d5791;
-    border: 2px solid #484193;
-    color: #dec9e6;
-    box-shadow: 0px 0px 1rem 1px #44304b;
+    background-color: #ffffff;
+    border: 2px solid #417c93;
+    color: #000000;
+    box-shadow: 0px 0px 7px 2px #3f5d61;
     border-radius: 8px;
     text-decoration: none;
 }
@@ -27,7 +29,7 @@ input{
 h1{
     font-size: 2rem;
     text-align: center;
-    color: #6bdb49;
+    color: #49c3db;
 
 }
 
@@ -36,11 +38,11 @@ form{
     border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
     padding: 3rem;
-    background-color: #331b30;
+    background-color: #e4e4e4;
     margin-top: 2rem;
     margin-left: 20%;
     margin-right: 20%;
-    box-shadow: 0px 0px 44px 10px #000;
+    box-shadow: 0px 0px 44px 10px #395255;
 }
 
 div{
@@ -57,8 +59,8 @@ button{
     text-align: center;
     color:#000000;
     border: 0px;
-    box-shadow: 0px 2px 30px 1px #51b336;
-    background-color: #55d32f;
+    box-shadow: 0px 2px 10px 2px #06716e;
+    background-color: #2fc5d3;
 }
 span{
     color: red;
