@@ -7,3 +7,4 @@ node_modules/
 # Ignore arquivos de ambiente
 .env
 
+*.js linguist-detectable=true
