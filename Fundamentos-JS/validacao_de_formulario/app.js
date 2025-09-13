@@ -46,4 +46,3 @@ function getInformation(){
             document.querySelector(`#${err.input}-error`).textContent = err.message;
     }
 }
-
