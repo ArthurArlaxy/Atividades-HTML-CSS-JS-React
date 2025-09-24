@@ -3,7 +3,7 @@ import { Task } from "../models/Task";
 import { z } from "zod"
 import { HttpError } from "../error/HttpError";
 
-const StoreRequesteSchema = z.object({
+const StoreRequestSchema = z.object({
     // Código responsavel por realizar a verificação do corpo da requisição
     title: z.string(),
     description: z.string(),
@@ -29,7 +29,7 @@ export class TaskController{
     // Temos também essa forma de tipar nossos controllers
     // POST /tasks
     store = (req: Request, res: Response) => {
-        const parsedBody = StoreRequesteSchema.parse(req.body)
+        const parsedBody = StoreRequestSchema.parse(req.body)
         const newTask = Task.create(parsedBody)
         res.status(201).json(newTask)
     }
