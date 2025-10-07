@@ -1,4 +1,18 @@
 import pg from "pg"
+import readline from "node:readline"
+import { stringify } from "node:querystring"
+
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
+function pergunta(text) {
+    return new Promise((answer) => {
+        rl.question(text, answer)
+    })
+}
 
 interface EventInterface {
     id: number,
@@ -95,12 +109,56 @@ async function ticketSales(nameOfEvent: string) {
 
 
 async function main() {
-    newEvent("Arthur programmer", "2025-10-06", 200, 199)
-    console.log(await createTableEvent())
-    console.log(await getEvents())
-    console.log(await getEventByName("Jorge e matheus"))
-    console.log(await getEventsByDate("2025-10-09"))
-    console.log(await ticketSales("Arthur programmer"))
+    let option = 0
+    let name = ""
+    let date = ""
+    let total_tickets = 0
+    let sold_tickets = 0
+    
+    while (option !== 6) {
+        console.log(`
+            Que opção você deseja:
+
+            1 - Ver todos os eventos 
+            2 - Adicionar Eventos
+            3 - Encontrar evento por nome
+            4 - Encontrar eventos por data
+            5 - Comprar um ingresso
+            6 - Sair
+        `)
+
+        option = await Number(await pergunta(">>>>>>>"))
+
+        switch (option) {
+            case 1:
+                console.log(await getEvents())
+                break
+            case 2:
+                name = await String(await pergunta("Qual é o nome do evento?"))
+                date = await String(await pergunta("Qual é o data do evento?"))
+                total_tickets = await Number(await pergunta("Qual é o total de ingressos?"))
+                sold_tickets = await Number(await pergunta("Quantos ingressos foram vendidos?"))
+                console.log(await newEvent(name, date, total_tickets, sold_tickets))
+                break
+            case 3:
+                name = await String(await pergunta("Qual é o nome do evento?"))
+                console.log(await getEventByName(name))
+                break
+            case 4:
+                date = await String(await pergunta("Qual é o data do evento?"))
+                console.log(await getEventsByDate(date))
+            case 5: 
+                name = await String(await pergunta("Qual é o nome do evento?"))
+                console.log(await ticketSales(name))
+                break
+            case 6: 
+                console.log("Saindo ...")
+                break
+            default:
+                console.log("Você digitou um opção invalida")
+        }
+    }
+    process.exit()
 }
 
 main()
