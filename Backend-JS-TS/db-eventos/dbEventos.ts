@@ -1,6 +1,5 @@
 import pg from "pg"
 import readline from "node:readline"
-import { stringify } from "node:querystring"
 
 
 const rl = readline.createInterface({
@@ -8,7 +7,7 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
-function pergunta(text) {
+function pergunta(text: string) {
     return new Promise((answer) => {
         rl.question(text, answer)
     })
