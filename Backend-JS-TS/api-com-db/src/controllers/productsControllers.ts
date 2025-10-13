@@ -1,6 +1,6 @@
 import { Handler } from "express";
-import { CreateProductInterface, Product } from "../models/productsModels";
-import { json } from "stream/consumers";
+import { Product } from "../models/productsModels";
+
 
 export class productsController {
     // GET /products
