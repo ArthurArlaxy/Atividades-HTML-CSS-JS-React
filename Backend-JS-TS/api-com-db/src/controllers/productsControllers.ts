@@ -6,7 +6,7 @@ export class productsController {
     // GET /products
     static products: Handler = async (req, res) => {
         const response = await Product.findAll()
-        return res.json(response)
+        res.json(response)
     }
     // POST /products
     static product: Handler = async (req, res) => {

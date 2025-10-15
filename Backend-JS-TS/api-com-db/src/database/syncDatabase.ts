@@ -15,12 +15,13 @@ async function syncDatabase() {
 
         CREATE TABLE IF NOT EXISTS customers (
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255),
-            email VARCHAR(255)
-        )
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL
+        );
     `)
 
-    console.log('Created "products" table.')
+    console.log('Created "products" and "customers" table.')
     process.exit(0)
 }
 
