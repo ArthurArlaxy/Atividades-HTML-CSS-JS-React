@@ -9,8 +9,8 @@ export class CustomersControllers{
     }
     // GET /customers/:id
     static customer: Handler = async (req, res) => {
-        const { id } = req.body
-        const customer = await Customers.findByID(id)
+        const { id } = req.params
+        const customer = await Customers.findByID(Number(id))
 
         if(!customer) res.status(404).json({message: "Customer not found!"})
 
@@ -21,10 +21,15 @@ export class CustomersControllers{
         const { name, email, password } = req.body
         
         if(typeof name !== "string" || typeof email !== "string" || typeof password !== "string"){
-            res.status(400).json({message: "Invalid Credentials"})
+            return res.status(400).json({message: "Invalid Credentials"})
         }
         
-        const customer = Customers.create({name, email,password})
+        const customer = await Customers.create({name, email,password})
+
+        if(!customer){
+            return res.status(400).json({message: "Invalid Credentials"})            
+        }
+
         res.json(customer)
     }
     // PUT /customers/:id
@@ -33,6 +38,11 @@ export class CustomersControllers{
     }
     // DELETE /customers/:id
     static delete: Handler = async (req, res) => {
+        const { id } = req.params
+        const customer = await Customers.delete(Number(id))
 
+        if(!customer) res.status(404).json({message: "Customer not found!"})
+
+        res.json(customer)
     } 
 }

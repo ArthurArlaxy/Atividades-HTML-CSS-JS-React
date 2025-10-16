@@ -47,11 +47,42 @@ export class Customers {
         return new Customers(customer.rows[0])
     }
 
+    static async findByEmail(email:string){
+        const customer = await query(`
+            SELECT * FROM customers where email = $1
+        `,[email])
+
+        if( customer.rowCount === 0 ){
+            return null
+        }
+
+        return new Customers(customer.rows[0])
+    }
+
     static async create(customerAttribute: CreateCustomersInterface){
+
+        const verifyEmail = await this.findByEmail(customerAttribute.email)
+
+        if(verifyEmail){
+            return null
+        }
+
         const newCustomer = await query(`
             INSERT INTO customers (name, email, password) VALUES ($1,$2,$3) RETURNING *
             `,[customerAttribute.name, customerAttribute.email, customerAttribute.password])
 
         return new Customers(newCustomer.rows[0])
+    }
+
+    static async delete(id:number){
+        const customer = await query(`
+            DELETE FROM customers where id = $1 RETURNING *
+        `,[id])
+
+        if( customer.rowCount === 0 ){
+            return null
+        }
+
+        return new Customers(customer.rows[0])
     }
 }
