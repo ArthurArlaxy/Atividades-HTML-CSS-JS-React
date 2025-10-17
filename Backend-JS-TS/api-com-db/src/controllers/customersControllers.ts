@@ -34,7 +34,15 @@ export class CustomersControllers{
     }
     // PUT /customers/:id
     static update: Handler = async (req, res) => {
+        const { id } = req.params
+        const { name, email, password } = req.body
+        
+        if((typeof name !== "string" && name ) || (typeof email !== "string" && email) || (typeof password !== "string" && password)){
+            return res.status(400).json({message: "Invalid Credentials"})
+        }
 
+        const updatedCustomer = await Customers.update(Number(id), { name, email, password })
+        res.json(updatedCustomer)
     }
     // DELETE /customers/:id
     static delete: Handler = async (req, res) => {

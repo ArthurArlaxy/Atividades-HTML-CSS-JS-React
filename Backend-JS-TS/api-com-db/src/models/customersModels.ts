@@ -12,6 +12,13 @@ interface CreateCustomersInterface{
     password: string
 }
 
+interface UpdateCustomersInterface{
+    name: string | undefined
+    email: string | undefined
+    password: string | undefined
+}
+
+
 export class Customers {
     id: number
     name: string
@@ -84,5 +91,28 @@ export class Customers {
         }
 
         return new Customers(customer.rows[0])
+    }
+
+    static async update(id:number, customerAttributeUpdate:UpdateCustomersInterface ){
+        const customer = await this.findByID(id)
+
+        if(!customer){
+            return null
+        }
+
+        const name = customerAttributeUpdate.name ?? customer.name
+        const email = customerAttributeUpdate.email ?? customer.email
+        const password = customerAttributeUpdate.password ?? customer.password
+        
+        const updatedCustomer = await query(`
+            UPDATE customers SET
+                name = $1,
+                email = $2,
+                password = $3
+                WHERE id = $4
+                RETURNING *
+            `,[name,email,password,id])
+
+        return new Customers(updatedCustomer.rows[0])
     }
 }
