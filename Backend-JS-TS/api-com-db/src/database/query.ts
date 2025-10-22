@@ -7,3 +7,7 @@ const pool = new Pool({
 export async function query(queryString: string, params?: any) {
     return pool.query(queryString, params)
 }
+
+export async function client(){
+    return pool.connect()
+}
