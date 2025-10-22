@@ -1,4 +1,4 @@
-import { query } from "../database/query"
+import { getClient, query } from "../database/query"
 import { Customers } from "./customersModels"
 import { Product } from "./productsModels"
 
@@ -11,14 +11,8 @@ interface OrderInterface{
 }
 
 interface ProductsInterface{
-    id: Number
-    name: String 
-    description: String 
-    price: Number
-    stock_quantity: Number
-    created_at: Date | undefined
-    updated_at: Date | undefined
-    is_active: Boolean
+    product: Product
+    quantity: Number | undefined
 }
 
 interface CustomerInterface {
@@ -35,10 +29,10 @@ class Order{
     total: Number
     createdAt: Date
     updatedAt: Date
-    customer: undefined | CustomerInterface
-    products: undefined | [ProductsInterface]
+    customer: null |undefined | CustomerInterface 
+    products: undefined | ProductsInterface[]
 
-    constructor(orderAttributes: OrderInterface, customerAttributes?:CustomerInterface, orderProductAttributes?: [ProductsInterface]){
+    constructor(orderAttributes: OrderInterface, customerAttributes?:CustomerInterface, orderProductAttributes?: ProductsInterface[]){
         this.id = orderAttributes.id
         this.customerId = orderAttributes.customer_id
         this.total = +orderAttributes.total
@@ -57,12 +51,12 @@ class Order{
     }
 
     static async findAll(){
-      const response = await query(`
+        const response = await query(`
             SELECT orders.*, 
                 customers.name as user_name,
                 customers.email as user_email
             FROM orders
-            JOIN customers ON WHERE customers.id = orders.id
+            JOIN customers ON WHERE customers.id = orders.customer_id
         `)
         return response.rows.map((row) => new Order(row))
     }
@@ -71,5 +65,42 @@ class Order{
         const storedOrderProducts = await query(`
                 SELECT * FROM products WHERE id = ANY($1::INT[]);
             `, [orderProducts.map((product:any) => product.id)])
+        
+        let orderTotal = 0
+        const populatedOrderProduct = storedOrderProducts.rows.map((row) => {
+            const { quantity } = orderProducts.find((product: Product) => product.id === row.id)
+            orderTotal += + row.price * quantity
+            return { product: new Product(row), quantity }
+        })
+
+        const dbClient = await getClient()
+        let response
+        try {
+            await dbClient.query('BEGIN')
+            
+            const orderCreationResult = await dbClient.query(`
+                    INSERT INTO orders (customer_id, total) VALUES ($1, $2) RETURNING *);
+                `,[customerId, orderTotal])
+
+            const order = new Order(orderCreationResult.rows[0], undefined,populatedOrderProduct)
+
+            for(const entry of populatedOrderProduct){
+                await dbClient.query(`
+                        INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1, $2, $3)
+                    `,[order.id, entry.product.id, entry.quantity])
+            }
+
+
+            await dbClient.query('COMMIT')
+            response = order
+        } catch (error:any) {
+            await dbClient.query('ROLLBACK')
+            response = { message: `Error while creating order: ${error.message}`}
+        }
+        finally{
+            await dbClient.release()   
+        }
+
+        return response
     }
 }

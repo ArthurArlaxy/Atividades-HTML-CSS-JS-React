@@ -8,6 +8,6 @@ export async function query(queryString: string, params?: any) {
     return pool.query(queryString, params)
 }
 
-export async function client(){
+export async function getClient(){
     return pool.connect()
 }
