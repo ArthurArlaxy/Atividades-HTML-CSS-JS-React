@@ -23,7 +23,7 @@ interface CustomerInterface {
 }
 
 
-class Order{
+export class Order{
     id: Number
     customerId: Number
     total: Number
@@ -56,7 +56,7 @@ class Order{
                 customers.name as user_name,
                 customers.email as user_email
             FROM orders
-            JOIN customers ON WHERE customers.id = orders.customer_id
+            JOIN customers ON customers.id = orders.customer_id
         `)
         return response.rows.map((row) => new Order(row))
     }

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { productsController } from "./controllers/productsControllers";
 import { CustomersControllers } from "./controllers/customersControllers";
+import { ordersControllers } from "./controllers/ordersControllers";
 
 export const router = Router()
 
@@ -15,3 +16,6 @@ router.get("/customers/:id",CustomersControllers.customer)
 router.post("/customers", CustomersControllers.create)
 router.put("/customers/:id", CustomersControllers.update)
 router.delete("/customers/:id", CustomersControllers.delete)
+
+router.get("/orders", ordersControllers.index)
+router.post("/orders", ordersControllers.create)
