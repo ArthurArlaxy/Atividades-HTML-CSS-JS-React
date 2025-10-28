@@ -24,21 +24,23 @@ async function syncDatabase() {
             id SERIAL PRIMARY KEY,
             customer_id INT NOT NULL,
             total INT NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            FOREING KEY (customer_id) REFERENCES customers (id)
-        )
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (customer_id) REFERENCES customers (id)
+        );
 
-        
         CREATE TABLE IF NOT EXISTS order_products(
             order_id INT NOT NULL,
             product_id INT NOT NULL,
             quantity INT NOT NULL,
-            FOREING KEY (order_id) REFERENCES orders (id)
-            FOREING KEY product_id) REFERENCES products (id)
-            PRIMARY KEY (product_id, customer_id)
-        )
-    `)
+            FOREIGN KEY (order_id) REFERENCES orders (id),
+            FOREIGN KEY (product_id) REFERENCES products (id),
+            PRIMARY KEY (product_id, order_id)
+        );
+
+        ALTER TABLE orders
+        ALTER COLUMN total TYPE DECIMAL(10, 2);
+`)
 
     console.log('Created "products","customers","orders","order_products" table.')
     process.exit(0)

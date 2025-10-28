@@ -12,7 +12,7 @@ interface OrderInterface{
 
 interface ProductsInterface{
     product: Product
-    quantity: Number | undefined
+    quantity: Number 
 }
 
 interface CustomerInterface {
@@ -65,36 +65,41 @@ export class Order{
         const storedOrderProducts = await query(`
                 SELECT * FROM products WHERE id = ANY($1::INT[]);
             `, [orderProducts.map((product:any) => product.id)])
+
+            console.log(storedOrderProducts)
         
         let orderTotal = 0
         const populatedOrderProduct = storedOrderProducts.rows.map((row) => {
             const { quantity } = orderProducts.find((product: Product) => product.id === row.id)
-            orderTotal += + row.price * quantity
+
+            orderTotal += row.price * quantity
+            console.log(orderTotal)
             return { product: new Product(row), quantity }
         })
 
         const dbClient = await getClient()
+        console.log(populatedOrderProduct)
         let response
         try {
             await dbClient.query('BEGIN')
             
             const orderCreationResult = await dbClient.query(`
-                    INSERT INTO orders (customer_id, total) VALUES ($1, $2) RETURNING *);
+                    INSERT INTO orders (customer_id, total) VALUES ($1, $2) RETURNING *;
                 `,[customerId, orderTotal])
 
             const order = new Order(orderCreationResult.rows[0], undefined,populatedOrderProduct)
 
             for(const entry of populatedOrderProduct){
                 await dbClient.query(`
-                        INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1, $2, $3)
+                        INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1, $2, $3);
                     `,[order.id, entry.product.id, entry.quantity])
             }
 
 
-            await dbClient.query('COMMIT')
+            await dbClient.query('COMMIT;')
             response = order
         } catch (error:any) {
-            await dbClient.query('ROLLBACK')
+            await dbClient.query('ROLLBACK;')
             response = { message: `Error while creating order: ${error.message}`}
         }
         finally{
