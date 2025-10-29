@@ -19,3 +19,5 @@ router.delete("/customers/:id", CustomersControllers.delete)
 
 router.get("/orders", ordersControllers.index)
 router.post("/orders", ordersControllers.create)
+router.get("/orders/:id", ordersControllers.order)
+router.delete("/orders/:id", ordersControllers.delete)

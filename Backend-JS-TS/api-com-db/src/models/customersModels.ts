@@ -4,7 +4,7 @@ interface CustomersInterface{
     id: number
     name: string
     email: string
-    password: string
+    password: string | null
 }
 interface CreateCustomersInterface{
     name: string
@@ -23,7 +23,7 @@ export class Customers {
     id: number
     name: string
     email: string
-    password: string
+    password: string | null
 
     constructor(customersAttributes: CustomersInterface){
         this.id = customersAttributes.id

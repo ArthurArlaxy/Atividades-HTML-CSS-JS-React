@@ -19,7 +19,7 @@ interface CustomerInterface {
     name: String 
     id: Number | undefined
     email: String | undefined
-    password: String | undefined
+    password: String | null
 }
 
 
@@ -53,12 +53,23 @@ export class Order{
     static async findAll(){
         const response = await query(`
             SELECT orders.*, 
-                customers.name as user_name,
-                customers.email as user_email
+                customers.id as "user.id",
+                customers.name as "user.name",
+                customers.email as "user.email"
             FROM orders
-            JOIN customers ON customers.id = orders.customer_id
+            JOIN customers ON customers.id = orders.customer_id;
         `)
-        return response.rows.map((row) => new Order(row))
+        return response.rows.map((row) => {
+
+            const customer = new Customers({
+                id:row["user.id"],
+                name:row["user.name"],
+                email:row["user.email"],
+                password:null,
+            })  
+
+            return new Order(row, customer)
+        })
     }
 
     static async create(customerId: Number, orderProducts:any ){
@@ -107,5 +118,69 @@ export class Order{
         }
 
         return response
+    }
+
+    static async findById(id:number){
+        const response = await query(`
+            SELECT orders.*, 
+                customers.id as "user.id",
+                customers.name as "user.name",
+                customers.email as "user.email",
+                order_products.quantity,
+                products.id as "products.id",
+                products.name as "products.name",
+                products.description as "products.description",
+                products.price as "products.price",
+                products.stock_quantity as "products.stock_quantity",
+                products.is_active as "products.is_active",
+                products.created_at as "products.created_at",
+                products.updated_at as "products.updated_at"
+            FROM orders
+            JOIN customers ON customers.id = orders.customer_id
+            JOIN order_products ON orders.id = order_products.order_id
+            JOIN products ON order_products.product_id = products.id
+            WHERE orders.id = $1;
+        `,[id])
+
+        const row = response.rows[0]
+
+        const customer = new Customers({
+                id:row["user.id"],
+                name:row["user.name"],
+                email:row["user.email"],
+                password:null,
+            })  
+
+        const product = new Product({
+            id:row["products.id"],
+            name:row["products.name"],
+            description:row["products.description"],
+            price:row["products.price"],
+            stock_quantity:row["products.stock_quantity"],
+            is_active:row["products.is_active"],
+            created_at:row["products.created_at"],
+            updated_at:row["products.updated_at"]
+        })
+
+        return new Order(row, customer, [{ product:product, quantity: row.quantity}])
+    }
+
+    static async delete(id:number){
+        const dbClient = await getClient()
+        let result
+        try {
+            await dbClient.query(`BEGIN`)
+            const orderDeleted = this.findById(id)
+            await query(`DELETE FROM  order_products WHERE order_id = $1`,[id])
+            await query(`DELETE FROM  orders WHERE id = $1`,[id])
+            await dbClient.query(`COMMIT`)
+            result = orderDeleted
+        } catch (error) {
+            await dbClient.query(`ROLLBACK`)
+            result = { message: `error while delete this order: ${error}`}
+        } finally{
+            dbClient.release()
+        }
+        return result
     }
 }

@@ -18,4 +18,25 @@ export class ordersControllers{
 
         res.json(newOrder)
     }
+    static order: Handler = async (req, res) => {
+        const { id } = req.params
+        
+        if(!id){
+            return res.status(400).json({ message:"Invalid Id"})
+        }
+
+        const order = await Order.findById(+id)
+        res.json(order)
+    }
+
+    static delete: Handler = async (req, res) => {
+        const { id } = req.params
+        
+        if(!id){
+            return res.status(400).json({ message:"Invalid Id"})
+        }
+        
+        const order = await Order.delete(+id)
+        res.json(order)
+    }
 }

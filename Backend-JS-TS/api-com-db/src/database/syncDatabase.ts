@@ -23,7 +23,7 @@ async function syncDatabase() {
         CREATE TABLE IF NOT EXISTS orders(
             id SERIAL PRIMARY KEY,
             customer_id INT NOT NULL,
-            total INT NOT NULL,
+            total DECIMAL(10, 2) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (customer_id) REFERENCES customers (id)
@@ -37,9 +37,6 @@ async function syncDatabase() {
             FOREIGN KEY (product_id) REFERENCES products (id),
             PRIMARY KEY (product_id, order_id)
         );
-
-        ALTER TABLE orders
-        ALTER COLUMN total TYPE DECIMAL(10, 2);
 `)
 
     console.log('Created "products","customers","orders","order_products" table.')
