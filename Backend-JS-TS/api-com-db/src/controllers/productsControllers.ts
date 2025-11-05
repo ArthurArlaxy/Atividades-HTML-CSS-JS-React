@@ -1,6 +1,9 @@
 import { Handler } from "express";
 import { Product } from "../models/productsModels";
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 export class productsController {
     // GET /products
