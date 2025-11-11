@@ -3,6 +3,7 @@ import express from "express"
 import { router } from "./router.js"
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.js"
 
+
 const app = express()
 
 app.use(cors())
