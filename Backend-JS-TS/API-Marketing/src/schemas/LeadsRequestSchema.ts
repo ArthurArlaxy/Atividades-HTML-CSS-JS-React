@@ -3,7 +3,7 @@ import { z } from "zod"
 
 const StatusEnumSchema = z.enum([  "New","Contacted","Qualified","Converted","Unresponsive","Disqualified","Archived"])
 
-export const GetLeadsSchema = z.object({
+export const GetLeadsRequestSchema = z.object({
     page: z.string().optional(),
     pageSize: z.string().optional(),
     name: z.string().optional(),
