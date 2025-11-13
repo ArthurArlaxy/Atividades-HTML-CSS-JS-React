@@ -1,6 +1,6 @@
 import type { Handler } from "express";
 import { prisma } from "../database/index.js";
-import { CreateLeadRequestSchema, GetLeadsSchema, UpdateLeadRequestSchema } from "../schemas/LeadsRequestSchema.js";
+import { CreateLeadRequestSchema, GetLeadsRequestSchema, UpdateLeadRequestSchema } from "../schemas/LeadsRequestSchema.js";
 import { HttpError } from "../errors/HttpError.js";
 import { Prisma } from "@prisma/client";
 
@@ -8,7 +8,7 @@ export class LeadsControllers {
 
     static index: Handler = async (req, res, next) =>{
         try {
-            const query = GetLeadsSchema.parse(req.query)
+            const query = GetLeadsRequestSchema.parse(req.query)
             const { page = 1, pageSize = 10, name, status, sortBy = "name", order = "asc"} = query
 
             const pageNumber = Number(page)
@@ -63,7 +63,7 @@ export class LeadsControllers {
             const lead = await prisma.lead.findUnique({
                 where:{id: Number(req.params.id)},
                 include:{
-                    Campaigns:true,
+                    campaigns:true,
                     groups: true
                 }
             })
