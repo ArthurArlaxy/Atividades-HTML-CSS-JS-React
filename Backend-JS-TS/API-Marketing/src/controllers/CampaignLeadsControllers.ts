@@ -1,5 +1,4 @@
 import type { Handler } from "express";
-import { GetLeadsRequestSchema } from "../schemas/LeadsRequestSchema.js";
 import type { Prisma } from "@prisma/client";
 import { GetCampaignLeadsRequestSchema } from "../schemas/CampaignsRequestSchema.js";
 import { prisma } from "../database/index.js";
@@ -34,7 +33,7 @@ export class CampaignLeadsController {
                         select:{
                             campaignId:true,
                             leadId:true,
-                            status:true
+                            status:true  
                         }
                     }
                 }
