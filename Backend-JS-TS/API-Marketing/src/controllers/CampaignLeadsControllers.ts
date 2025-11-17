@@ -1,11 +1,11 @@
 import type { Handler } from "express";
 import { GetLeadsRequestSchema } from "../schemas/LeadsRequestSchema.js";
 import type { Prisma } from "@prisma/client";
-import { GetCampaignLeadsRequestSchema } from "../schemas/CampaignsRequestSchema.js";
+import { AddLeadRequestScheme, GetCampaignLeadsRequestSchema, UpdateLeadStatusSchema } from "../schemas/CampaignsRequestSchema.js";
 import { prisma } from "../database/index.js";
 
 export class CampaignLeadsController {
-    getLeads: Handler = async (req, res, next) => {
+    static getLeads: Handler = async (req, res, next) => {
         try {
 
             const campaignId = Number(req.params.campaignId)
@@ -40,35 +40,71 @@ export class CampaignLeadsController {
                 }
             })
 
+            const total = await prisma.lead.count({ where })
+
+            res.json({
+                leads,
+                meta: {
+                    page: pageNumber,
+                    pageSize: pageSizeNumber,
+                    total,
+                    totalPages: Math.ceil(Number(total) / pageSizeNumber)
+                }
+            })
+
         } catch (error) {
             next(error)
         }
     }
 
-    addLead: Handler = async (req, res, next) => {
+    static addLead: Handler = async (req, res, next) => {
         try {
+            const body = AddLeadRequestScheme.parse(req.body)
+            await  prisma.leadCampaign.create({
+                data: {
+                    campaignId: Number(req.params.campaignId),
+                    leadId: body.leadId,
+                    status:  body.status  
+                }
+            })
 
-
+            res.status(201).json({ message: "The lead was included to this campaign"})
             
         } catch (error) {
             next(error)
         }
     }
 
-    updateLeadStatus: Handler = async (req, res, next) => {
+    static updateLeadStatus: Handler = async (req, res, next) => {
         try {
+            const body = UpdateLeadStatusSchema.parse(req.body)
+            const updateLeadCampaign = await prisma.leadCampaign.update({
+                data:body,
+                where: { leadId_campaignId: {
+                    campaignId: Number(req.params.campaignId),
+                    leadId: Number(req.params.leadId)
+                }}
+            })
 
+            res.json(updateLeadCampaign)
 
-            
         } catch (error) {
             next(error)
         }
     }
 
-    deleteLead: Handler = async (req, res, next) => {
+    static deleteLead: Handler = async (req, res, next) => {
         try {
+            const deletedLead = await prisma.leadCampaign.delete({
+                where: {
+                    leadId_campaignId:{
+                        campaignId: Number(req.params.campaignId),
+                        leadId: Number(req.params.leadId)
+                    }
+                }
+            })
 
-
+            res.json(deletedLead)
             
         } catch (error) {
             next(error)
