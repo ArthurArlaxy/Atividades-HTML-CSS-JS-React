@@ -2,6 +2,7 @@ import { Router } from "express";
 import { LeadsControllers } from "./controllers/LeadsControllers.js";
 import { GroupsController } from "./controllers/GroupsControllers.js";
 import { CampaignsController } from "./controllers/CampaignControllers.js";
+import { CampaignLeadsController } from "./controllers/CampaignLeadsControllers.js";
 
 export const router = Router()
 
@@ -23,7 +24,7 @@ router.get("/campaigns/:id", CampaignsController.show)
 router.put("/campaigns/:id", CampaignsController.update)
 router.delete("/campaigns/:id", CampaignsController.delete)
 
-router.get("/campaigns/:campaignId/leads")
-router.post("campaigns/:campaignId/leads")
-router.put("campaigns/:campaignId/leads/:leadId")
-router.delete("campaigns/:campaignId/leads/:leadId")
+router.get("/campaigns/:campaignId/leads", CampaignLeadsController.getLeads)
+router.post("/campaigns/:campaignId/leads", CampaignLeadsController.addLead)
+router.put("/campaigns/:campaignId/leads/:leadId", CampaignLeadsController.updateLeadStatus)
+router.delete("/campaigns/:campaignId/leads/:leadId",CampaignLeadsController.deleteLead)
