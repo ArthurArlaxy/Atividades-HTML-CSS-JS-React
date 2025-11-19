@@ -1,25 +1,50 @@
 import type { Handler } from "express";
 import { prisma } from "../database/index.js";
 import { HttpError } from "../errors/HttpError.js";
+import type { Prisma } from "@prisma/client";
+import { GetLeadsRequestSchema } from "../schemas/LeadsRequestSchema.js";
 
 export class GroupLeadsController {
     static getLeads: Handler = async (req, res, next) => {
         try {
+            const groupId = Number(req.params.groupId)
+            const query = GetLeadsRequestSchema.parse(req.query)
+            const { page = 1, pageSize = 10, name, status, sortBy = "name", order = "asc" } = query
 
-            const group = await prisma.group.findUnique({
-                where: { id: Number(req.params.groupId) },
-            })
+            const pageNumber = Number(page)
+            const pageSizeNumber = Number(pageSize)
 
-            if (!group) throw new HttpError(404, "group not found!")
+            const where: Prisma.LeadWhereInput = {
+                groups: {
+                    some: { id: groupId }
+                }
+            }
 
-            const leads = await prisma.group.findMany({
-                where: { id: Number(req.params.groupId) },
-                select: {
-                    leads: true
+            if (name) where.name = { contains: name, mode: "insensitive" }
+            if (status) where.status = status
+
+
+            const leads = await prisma.lead.findMany({
+                where,
+                orderBy: { [sortBy]: order },
+                skip: (pageNumber - 1) * pageSizeNumber,
+                take: pageSizeNumber,
+                include: {
+                    groups: true
                 }
             })
 
-            res.json(leads)
+            const total = await prisma.lead.count({ where })
+
+            res.json({
+                leads,
+                meta: {
+                    page: pageNumber,
+                    pageSize: pageSizeNumber,
+                    total,
+                    totalPage: Math.ceil(Number(total) / pageSizeNumber)
+                }
+            })
 
         } catch (error) {
             next(error)
@@ -38,7 +63,7 @@ export class GroupLeadsController {
 
             if (!group) throw new HttpError(404, "group not found!")
 
-            const newLead = await prisma.group.update({
+            await prisma.group.update({
                 where: { id: Number(req.params.groupId) },
                 data: {
                     leads: {
@@ -47,7 +72,7 @@ export class GroupLeadsController {
                 }
             })
 
-            res.json({ message: `lead atribuído ao grupo: ${group.name}`})
+            res.json({ message: `lead atribuído ao grupo: ${group.name}` })
 
         } catch (error) {
             next(error)
@@ -66,7 +91,7 @@ export class GroupLeadsController {
 
             if (!group) throw new HttpError(404, "group not found!")
 
-            const newLead = await prisma.group.update({
+            await prisma.group.update({
                 where: { id: Number(req.params.groupId) },
                 data: {
                     leads: {
@@ -77,7 +102,7 @@ export class GroupLeadsController {
                 }
             })
 
-            res.json({ message: `lead removido do grupo: ${group.name}`})
+            res.json({ message: `lead removido do grupo: ${group.name}` })
 
         } catch (error) {
             next(error)
