@@ -3,6 +3,7 @@ import { prisma } from "../database/index.js";
 import { CreateLeadRequestSchema, GetLeadsRequestSchema, UpdateLeadRequestSchema } from "../schemas/LeadsRequestSchema.js";
 import { HttpError } from "../errors/HttpError.js";
 import { Prisma } from "@prisma/client";
+import { da } from "zod/locales";
 
 export class LeadsControllers {
 
@@ -83,11 +84,22 @@ export class LeadsControllers {
             const id = Number(req.params.id)
             const body = UpdateLeadRequestSchema.parse(req.body)
 
-            const leadExists = await prisma.lead.findUnique({where: { id }})
-            if(!leadExists) throw new HttpError(404, "lead not found")
+            const lead = await prisma.lead.findUnique({where: { id }})
+            if(!lead) throw new HttpError(404, "lead not found")
+
+            if(lead.status === "New" && body.status !== "Contacted" && body.status){
+                throw new HttpError(400, "Um novo lead deve ser contado antes de ter seus status atualizados para outros valores")
+            }
+
+            const date = new Date()
+            const mouthWithoutIteraction = (date.getFullYear() - lead.updatedAt.getFullYear() ) * 12 + (date.getMonth() - lead.updatedAt.getMonth())
+            
+            if(body.status ==="Archived" && mouthWithoutIteraction < 6){
+                throw new HttpError(400, "Um lead precisa ter pelo menos 6 meses de inatividade para ser desativado")
+            }
+
+    
             const updatedLead = await prisma.lead.update({ where:{ id }, data:body })
-
-
 
             res.status(201).json(updatedLead)
 
