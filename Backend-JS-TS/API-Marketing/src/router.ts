@@ -1,17 +1,20 @@
 import { Router } from "express";
-import { LeadsControllers } from "./controllers/LeadsControllers.js";
+import { LeadsController } from "./controllers/LeadsController.js";
 import { GroupsController } from "./controllers/GroupsControllers.js";
-import { CampaignsController } from "./controllers/CampaignControllers.js";
-import { CampaignLeadsController } from "./controllers/CampaignLeadsControllers.js";
-import { GroupLeadsController } from "./controllers/GroupLeadsControllers.js";
+import { CampaignsController } from "./controllers/CampaignController.js";
+import { CampaignLeadsController } from "./controllers/CampaignLeadsController.js";
+import { GroupLeadsController } from "./controllers/GroupLeadsController.js";
+
+
+const leadsController  = new LeadsController()
 
 export const router = Router()
 
-router.get("/leads", LeadsControllers.index)
-router.post("/leads", LeadsControllers.create)
-router.get("/leads/:id", LeadsControllers.show)
-router.put("/leads/:id", LeadsControllers.update)
-router.delete("/leads/:id", LeadsControllers.delete)
+router.get("/leads",leadsController.index)
+router.post("/leads", leadsController.create)
+router.get("/leads/:id", leadsController.show)
+router.put("/leads/:id", leadsController.update)
+router.delete("/leads/:id", leadsController.delete)
 
 router.get("/groups", GroupsController.index)
 router.post("/groups", GroupsController.create)
