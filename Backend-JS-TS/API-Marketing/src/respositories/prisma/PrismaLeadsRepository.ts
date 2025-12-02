@@ -15,7 +15,7 @@ export class PrismaLeadsRepository implements LeadsRepository {
             },
             orderBy: { [params.sortBy ?? "name"]: params.order },
             skip: params.offset,
-            take: params.limit
+            take: params.limit,
         })
     }
 
@@ -38,21 +38,27 @@ export class PrismaLeadsRepository implements LeadsRepository {
                     mode: where?.name?.mode
                 },
                 status: where?.status,
+                groups: {
+                    some: { id: where?.groupId }
+                },
+                campaigns: {
+                    some: { campaignId: where?.campaignsId }
+                },
             }
         })
     }
 
     async create(attributes: CreateLeadAttributes): Promise<Lead> {
-        return prisma.lead.create({ data: attributes})
+        return prisma.lead.create({ data: attributes })
     }
 
     async updateById(id: number, attributes: Partial<CreateLeadAttributes>): Promise<Lead | null> {
         const leadExists = await this.findById(id)
 
-        if(!leadExists) return null
+        if (!leadExists) return null
 
         return prisma.lead.update({
-            where:{ id }, 
+            where: { id },
             data: attributes
         })
     }
@@ -60,9 +66,33 @@ export class PrismaLeadsRepository implements LeadsRepository {
     async deleteById(id: number): Promise<Lead | null> {
         const leadExists = await this.findById(id)
 
-        if(!leadExists) return null
+        if (!leadExists) return null
 
-        return prisma.lead.delete({ where:{ id } })
+        return prisma.lead.delete({ where: { id } })
     }
-
+        async findGroupLeads(params: FindLeadsParams): Promise<Lead[]> {
+        return prisma.lead.findMany({
+            where: {
+                name: {
+                    contains: params.where?.name?.like,
+                    equals: params.where?.name?.equals,
+                    mode: params.where?.name?.mode
+                },
+                status: params.where?.status,
+                groups: {
+                    some: { id: params.where?.groupId }
+                },
+                campaigns: {
+                    some: { campaignId: params.where?.campaignsId }
+                },
+            },
+            orderBy: { [params.sortBy ?? "name"]: params.order },
+            skip: params.offset,
+            take: params.limit,
+            include: {
+                groups: params.include?.groups,
+                campaigns: params.include?.campaigns
+            }
+        })
+    }
 }

@@ -8,6 +8,8 @@ export interface LeadsWhereParams {
         mode?: "default" | "insensitive"
     }
     status?: LeadStatus
+    groupId?: number
+    campaignsId?: number
 }
 
 export interface FindLeadsParams{
@@ -16,6 +18,10 @@ export interface FindLeadsParams{
     order?: "asc" | "desc"
     limit?: number
     offset?: number
+    include?: {
+        groups?: boolean,
+        campaigns?: boolean
+    }
 }
 
 export interface CreateLeadAttributes {
@@ -28,6 +34,7 @@ export interface CreateLeadAttributes {
 
 export interface LeadsRepository {
     find: (params: FindLeadsParams) => Promise<Lead[]>
+    findGroupLeads: (params: FindLeadsParams) => Promise<Lead[]>
     findById: (id: number) => Promise<Lead | null>
     count: (where: LeadsWhereParams) => Promise<number>
     create: (attributes: CreateLeadAttributes) => Promise<Lead>
