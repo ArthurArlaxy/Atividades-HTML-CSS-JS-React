@@ -2,39 +2,67 @@ import { Lead } from "@prisma/client";
 import { CreateLeadAttributes, FindLeadsParams, LeadsRepository, LeadsWhereParams } from "../LeadsRepository.js";
 import { prisma } from "../../database/index.js";
 
-export class PrismaLeadsRepository implements LeadsRepository{
-    async find(params: FindLeadsParams): Promise<Lead[]>{
+export class PrismaLeadsRepository implements LeadsRepository {
+    async find(params: FindLeadsParams): Promise<Lead[]> {
         return prisma.lead.findMany({
-            where:{
-                name:{ 
+            where: {
+                name: {
                     contains: params.where?.name?.like,
                     equals: params.where?.name?.equals,
                     mode: params.where?.name?.mode
                 },
                 status: params.where?.status,
-                
+            },
+            orderBy: { [params.sortBy ?? "name"]: params.order },
+            skip: params.offset,
+            take: params.limit
+        })
+    }
+
+    async findById(id: number): Promise<Lead | null> {
+        return prisma.lead.findUnique({
+            where: { id },
+            include: {
+                groups: true,
+                campaigns: true
             }
         })
     }
 
-    async findById(id: number): Promise<Lead | null>{
-
+    async count(where: LeadsWhereParams): Promise<number> {
+        return prisma.lead.count({
+            where: {
+                name: {
+                    contains: where?.name?.like,
+                    equals: where?.name?.equals,
+                    mode: where?.name?.mode
+                },
+                status: where?.status,
+            }
+        })
     }
 
-    async count(where: LeadsWhereParams): Promise<number>{
-
+    async create(attributes: CreateLeadAttributes): Promise<Lead> {
+        return prisma.lead.create({ data: attributes})
     }
 
-    async create(attributes: CreateLeadAttributes): Promise<Lead>{
+    async updateById(id: number, attributes: Partial<CreateLeadAttributes>): Promise<Lead | null> {
+        const leadExists = await this.findById(id)
 
+        if(!leadExists) return null
+
+        return prisma.lead.update({
+            where:{ id }, 
+            data: attributes
+        })
     }
 
-    async updateById(id: number, attributes: Partial<CreateLeadAttributes>): Promise<Lead | null>{
+    async deleteById(id: number): Promise<Lead | null> {
+        const leadExists = await this.findById(id)
 
-    }
+        if(!leadExists) return null
 
-    async deleteById(id: number): Promise<Lead | null>{
-
+        return prisma.lead.delete({ where:{ id } })
     }
 
 }

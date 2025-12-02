@@ -4,7 +4,7 @@ import { AddLeadRequestScheme, GetCampaignLeadsRequestSchema, UpdateLeadStatusSc
 import { prisma } from "../database/index.js";
 
 export class CampaignLeadsController {
-    static getLeads: Handler = async (req, res, next) => {
+    getLeads: Handler = async (req, res, next) => {
         try {
 
             const campaignId = Number(req.params.campaignId)
@@ -56,7 +56,7 @@ export class CampaignLeadsController {
         }
     }
 
-    static addLead: Handler = async (req, res, next) => {
+    addLead: Handler = async (req, res, next) => {
         try {
             const body = AddLeadRequestScheme.parse(req.body)
             await  prisma.leadCampaign.create({
@@ -74,7 +74,7 @@ export class CampaignLeadsController {
         }
     }
 
-    static updateLeadStatus: Handler = async (req, res, next) => {
+    updateLeadStatus: Handler = async (req, res, next) => {
         try {
             const body = UpdateLeadStatusSchema.parse(req.body)
             const updateLeadCampaign = await prisma.leadCampaign.update({
@@ -92,7 +92,7 @@ export class CampaignLeadsController {
         }
     }
 
-    static deleteLead: Handler = async (req, res, next) => {
+    deleteLead: Handler = async (req, res, next) => {
         try {
             const deletedLead = await prisma.leadCampaign.delete({
                 where: {

@@ -15,7 +15,7 @@ export class LeadsController {
             const query = GetLeadsRequestSchema.parse(req.query)
             const { page = 1, pageSize = 10, name, status, sortBy = "name", order = "asc"} = query
 
-            const limit = Number(page)
+            const limit = Number(pageSize)
             const offset = (Number(page) - 1) * limit
 
             const where: LeadsWhereParams = {}

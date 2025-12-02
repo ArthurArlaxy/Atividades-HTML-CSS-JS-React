@@ -4,7 +4,7 @@ import { CreateCampaignRequestSchema, UpdateCampaignRequestSchema } from "../sch
 import { HttpError } from "../errors/HttpError.js";
 
 export class CampaignsController{
-    static index: Handler = async (req, res, next) => {
+    index: Handler = async (req, res, next) => {
         try {
             
             const campaigns = await prisma.campaign.findMany()
@@ -15,7 +15,7 @@ export class CampaignsController{
             next(error)
         }
     }
-    static create: Handler = async (req, res, next) => {
+    create: Handler = async (req, res, next) => {
         try {
 
             const body = CreateCampaignRequestSchema.parse(req.body)
@@ -27,7 +27,7 @@ export class CampaignsController{
             next(error)
         }
     }
-    static show: Handler = async (req, res, next) => {
+    show: Handler = async (req, res, next) => {
         try {
             
             const id = Number(req.params.id)
@@ -52,7 +52,7 @@ export class CampaignsController{
             next(error)
         }
     }
-    static update: Handler = async (req, res, next) => {
+    update: Handler = async (req, res, next) => {
         try {
 
             const id = Number(req.params.id)
@@ -72,7 +72,7 @@ export class CampaignsController{
             next(error)
         }
     }
-    static delete: Handler = async (req, res, next) => {
+    delete: Handler = async (req, res, next) => {
         try {
             
             const id = Number(req.params.id)

@@ -5,7 +5,7 @@ import type { Prisma } from "@prisma/client";
 import { GetLeadsRequestSchema } from "../schemas/LeadsRequestSchema.js";
 
 export class GroupLeadsController {
-    static getLeads: Handler = async (req, res, next) => {
+    getLeads: Handler = async (req, res, next) => {
         try {
             const groupId = Number(req.params.groupId)
             const query = GetLeadsRequestSchema.parse(req.query)
@@ -51,7 +51,7 @@ export class GroupLeadsController {
         }
     }
 
-    static addLead: Handler = async (req, res, next) => {
+    addLead: Handler = async (req, res, next) => {
         try {
 
             const group = await prisma.group.findUnique({
@@ -79,7 +79,7 @@ export class GroupLeadsController {
         }
     }
 
-    static deleteLead: Handler = async (req, res, next) => {
+    deleteLead: Handler = async (req, res, next) => {
         try {
 
             const group = await prisma.group.findUnique({

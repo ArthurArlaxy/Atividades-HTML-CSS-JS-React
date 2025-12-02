@@ -4,7 +4,7 @@ import { CreateGroupRequestSchema, UpdateGroupRequestSchema } from "../schemas/G
 import { HttpError } from "../errors/HttpError.js";
 
 export class GroupsController{
-    static index: Handler = async (req, res, next ) => {
+    index: Handler = async (req, res, next ) => {
         try {
             
             const groups = await prisma.group.findMany()
@@ -14,7 +14,7 @@ export class GroupsController{
             next(error)
         }
     }
-    static create: Handler = async (req, res, next ) => {
+    create: Handler = async (req, res, next ) => {
         try {
             const body = CreateGroupRequestSchema.parse(req.body)
             const newGroup = await prisma.group.create({ data: body })
@@ -23,7 +23,7 @@ export class GroupsController{
             next(error)
         }
     }   
-    static show: Handler = async (req, res, next ) => {
+    show: Handler = async (req, res, next ) => {
         try {
 
             const group = await prisma.group.findUnique({
@@ -38,7 +38,7 @@ export class GroupsController{
             next(error)
         }
     }   
-    static update: Handler = async (req, res, next ) => {
+    update: Handler = async (req, res, next ) => {
         try {
             
             const id = Number(req.params.id)
@@ -58,7 +58,7 @@ export class GroupsController{
             next(error)
         }
     }   
-    static delete: Handler = async (req, res, next ) => {
+    delete: Handler = async (req, res, next ) => {
         try {
 
             const id = Number(req.params.id)
