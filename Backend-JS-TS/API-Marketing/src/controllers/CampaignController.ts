@@ -2,12 +2,15 @@ import type { Handler } from "express";
 import { prisma } from "../database/index.js";
 import { CreateCampaignRequestSchema, UpdateCampaignRequestSchema } from "../schemas/CampaignsRequestSchema.js";
 import { HttpError } from "../errors/HttpError.js";
+import { CampaignsRepository } from "../respositories/CampaignsRepository.js";
 
 export class CampaignsController{
+    constructor(private readonly campaignsRepository: CampaignsRepository){}
+
     index: Handler = async (req, res, next) => {
         try {
             
-            const campaigns = await prisma.campaign.findMany()
+            const campaigns = await this.campaignsRepository.find()
             if (campaigns.length === 0 ) return res.status(200).json({ message: "No campaigns found. Create a new one!" })
             res.json(campaigns || { message: "Create a new Campaing"})
 
@@ -19,8 +22,8 @@ export class CampaignsController{
         try {
 
             const body = CreateCampaignRequestSchema.parse(req.body)
-            const newCampaign = await prisma.campaign.create({ data: body })
-            
+            const newCampaign = await this.campaignsRepository.create(body)
+
             res.status(201).json(newCampaign)
 
         } catch (error) {
@@ -32,19 +35,8 @@ export class CampaignsController{
             
             const id = Number(req.params.id)
 
-            const campaignExists = await prisma.campaign.findUnique({ where: { id } })
-            if(!campaignExists) throw new HttpError(404, "Campaign not found")
-
-            const campaign = await prisma.campaign.findUnique({
-                where: { id },
-                include:{
-                    leads: {
-                        include:{
-                            lead:true
-                        }
-                    } 
-                }
-            })
+            const campaign = await this.campaignsRepository.findById(id)
+            if(!campaign) throw new HttpError(404, "Campaign not found")
 
             res.json(campaign)
 
