@@ -14,7 +14,7 @@ export const UpdateCampaignRequestSchema = z.object({
     endDate: z.coerce.date().optional()
 })
 
-const LeadCampaignStatusSchema = z.enum([
+export const LeadCampaignStatusSchema = z.enum([
     "New",
     "Engaged",
     "FolloUp_Scheduled",
@@ -38,7 +38,6 @@ export const GetCampaignLeadsRequestSchema = z.object({
 
 
 export const AddLeadRequestScheme = z.object({
-    leadId: z.number(),
     status: LeadCampaignStatusSchema.default("New")
 })
 

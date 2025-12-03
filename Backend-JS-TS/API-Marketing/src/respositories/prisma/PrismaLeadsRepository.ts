@@ -42,7 +42,7 @@ export class PrismaLeadsRepository implements LeadsRepository {
                     some: { id: where?.groupId }
                 },
                 campaigns: {
-                    some: { campaignId: where?.campaignsId }
+                    some: { campaignId: where?.campaignId }
                 },
             }
         })
@@ -70,12 +70,11 @@ export class PrismaLeadsRepository implements LeadsRepository {
 
         return prisma.lead.delete({ where: { id } })
     }
-        async findGroupLeads(params: FindLeadsParams): Promise<Lead[]> {
+    async findGroupLeads(params: FindLeadsParams): Promise<Lead[]> {
         return prisma.lead.findMany({
             where: {
                 name: {
                     contains: params.where?.name?.like,
-                    equals: params.where?.name?.equals,
                     mode: params.where?.name?.mode
                 },
                 status: params.where?.status,
@@ -83,7 +82,7 @@ export class PrismaLeadsRepository implements LeadsRepository {
                     some: { id: params.where?.groupId }
                 },
                 campaigns: {
-                    some: { campaignId: params.where?.campaignsId }
+                    some: { campaignId: params.where?.campaignId }
                 },
             },
             orderBy: { [params.sortBy ?? "name"]: params.order },
@@ -94,5 +93,34 @@ export class PrismaLeadsRepository implements LeadsRepository {
                 campaigns: params.include?.campaigns
             }
         })
+    }
+    async findCampaignLeads(params: FindLeadsParams): Promise<Lead[]> {
+        return prisma.lead.findMany({
+                where:{
+                    name: {
+                        contains: params.where?.name?.like,
+                        mode: params.where?.name?.mode
+                    },
+                    campaigns:{
+                        some:{
+                            campaignId: params.where?.campaignId,
+                            status:params.where?.campaignStatus
+                        }
+                    }
+                },
+                orderBy: { [params.sortBy ?? "name"]: params.order },
+                skip: params.offset,
+                take: params.limit,
+                include: {
+                    campaigns: {
+                        select: {
+                            campaignId: true,
+                            leadId: true,
+                            status: true
+                        }
+                    }
+                }
+            })
+
     }
 }

@@ -1,4 +1,5 @@
-import { Lead } from "@prisma/client"
+import { Lead, LeadCampaignStatus } from "@prisma/client"
+
 export type LeadStatus = "New" |"Contacted" |"Qualified" |"Converted" |"Unresponsive" |"Disqualified" |"Archived"
 
 export interface LeadsWhereParams {
@@ -9,7 +10,8 @@ export interface LeadsWhereParams {
     }
     status?: LeadStatus
     groupId?: number
-    campaignsId?: number
+    campaignId?: number
+    campaignStatus?: LeadCampaignStatus | undefined
 }
 
 export interface FindLeadsParams{
@@ -35,6 +37,7 @@ export interface CreateLeadAttributes {
 export interface LeadsRepository {
     find: (params: FindLeadsParams) => Promise<Lead[]>
     findGroupLeads: (params: FindLeadsParams) => Promise<Lead[]>
+    findCampaignLeads: (params: FindLeadsParams) => Promise<Lead[]>
     findById: (id: number) => Promise<Lead | null>
     count: (where: LeadsWhereParams) => Promise<number>
     create: (attributes: CreateLeadAttributes) => Promise<Lead>
