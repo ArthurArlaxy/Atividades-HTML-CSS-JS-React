@@ -40,15 +40,19 @@ export class PrismaCampaignsRepository implements CampaignsRepository {
         })
     }
     async updateLeadStatus(campaignId: number, leadId: number, status: LeadCampaignStatus): Promise<LeadCampaign | null> {
-        return prisma.leadCampaign.update({
-            data: {status},
-            where: {
-                leadId_campaignId: {
-                    campaignId,
-                    leadId
+        try {
+            return await prisma.leadCampaign.update({
+                data: { status },
+                where: {
+                    leadId_campaignId: {
+                        campaignId,
+                        leadId
+                    }
                 }
-            }
-        })
+            });
+        } catch (error: any) {
+            return null;
+        }
     }
     async removeLead(campaignId: number, leadId: number): Promise<LeadCampaign | null> {
         return prisma.leadCampaign.delete({

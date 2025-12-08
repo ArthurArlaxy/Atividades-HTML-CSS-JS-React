@@ -7,7 +7,12 @@ export class PrismaGroupsRepository implements GroupsRepository {
         return prisma.group.findMany()
     }
     async findById(id: number): Promise<Group | null> {
-        return prisma.group.findUnique({ where: { id } })
+        return prisma.group.findUnique({
+            where: { id },
+            include:{
+                leads:true
+            }
+        })
     }
     async create(attribute: CreateGroupAttribute): Promise<Group> {
         return prisma.group.create({ data: attribute })

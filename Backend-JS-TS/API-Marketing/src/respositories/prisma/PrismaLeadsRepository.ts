@@ -30,20 +30,32 @@ export class PrismaLeadsRepository implements LeadsRepository {
     }
 
     async count(where: LeadsWhereParams): Promise<number> {
+        let groups = undefined
+        let campaigns = undefined
+        if (where.groupId) {
+            groups = {
+                some: { id: where.groupId }
+            }
+        }
+
+        if (where.campaignId || where.campaignStatus) {
+            campaigns = {
+                some: {
+                    campaignId: where?.campaignId,
+                    status: where?.campaignStatus
+                }
+            }
+        }
+
         return prisma.lead.count({
             where: {
                 name: {
                     contains: where?.name?.like,
-                    equals: where?.name?.equals,
                     mode: where?.name?.mode
                 },
                 status: where?.status,
-                groups: {
-                    some: { id: where?.groupId }
-                },
-                campaigns: {
-                    some: { campaignId: where?.campaignId }
-                },
+                groups,
+                campaigns
             }
         })
     }
@@ -80,10 +92,7 @@ export class PrismaLeadsRepository implements LeadsRepository {
                 status: params.where?.status,
                 groups: {
                     some: { id: params.where?.groupId }
-                },
-                campaigns: {
-                    some: { campaignId: params.where?.campaignId }
-                },
+                }
             },
             orderBy: { [params.sortBy ?? "name"]: params.order },
             skip: params.offset,
@@ -96,31 +105,25 @@ export class PrismaLeadsRepository implements LeadsRepository {
     }
     async findCampaignLeads(params: FindLeadsParams): Promise<Lead[]> {
         return prisma.lead.findMany({
-                where:{
-                    name: {
-                        contains: params.where?.name?.like,
-                        mode: params.where?.name?.mode
-                    },
-                    campaigns:{
-                        some:{
-                            campaignId: params.where?.campaignId,
-                            status:params.where?.campaignStatus
-                        }
-                    }
+            where: {
+                name: {
+                    contains: params.where?.name?.like,
+                    mode: params.where?.name?.mode
                 },
-                orderBy: { [params.sortBy ?? "name"]: params.order },
-                skip: params.offset,
-                take: params.limit,
-                include: {
-                    campaigns: {
-                        select: {
-                            campaignId: true,
-                            leadId: true,
-                            status: true
-                        }
+                campaigns: {
+                    some: {
+                        campaignId: params.where?.campaignId,
+                        status: params.where?.campaignStatus
                     }
                 }
-            })
+            },
+            orderBy: { [params.sortBy ?? "name"]: params.order },
+            skip: params.offset,
+            take: params.limit,
+            include: {
+                campaigns: true
+            }
+        })
 
     }
 }

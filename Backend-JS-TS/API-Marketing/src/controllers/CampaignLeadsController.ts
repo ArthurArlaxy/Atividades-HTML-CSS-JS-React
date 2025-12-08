@@ -1,9 +1,8 @@
 import type { Handler } from "express";
-import type { Prisma } from "@prisma/client";
 import { AddLeadRequestScheme, GetCampaignLeadsRequestSchema, UpdateLeadStatusSchema } from "../schemas/CampaignsRequestSchema.js";
-import { prisma } from "../database/index.js";
 import { CampaignsRepository } from "../respositories/CampaignsRepository.js";
 import { LeadsRepository, LeadsWhereParams } from "../respositories/LeadsRepository.js";
+import { HttpError } from "../errors/HttpError.js";
 
 export class CampaignLeadsController {
     constructor(
