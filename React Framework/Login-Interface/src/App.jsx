@@ -7,11 +7,11 @@ function App() {
 
   return (
     <section>
-      <img src="" alt="" />
+      <img src="./Foto_Arthur.jpg" alt="" />
       <div>
-        <TextArea content="Sou Foda"/>
-        <TextArea content="Sou Foda"/>
-        <TextArea content="Sou Foda"/>
+        <TextArea content="Projetos para praticar e evoluir como desenvolvedor."/>
+        <TextArea content="Aplicações com foco em backend, APIs e banco de dados."/>
+        <TextArea content="Código organizado, versionado e em constante evolução."/>
       </div>
       <div>
         <Button link="Github" content="Github"/>

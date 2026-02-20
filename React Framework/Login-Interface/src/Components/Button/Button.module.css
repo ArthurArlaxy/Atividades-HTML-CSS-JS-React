@@ -1,7 +1,8 @@
 .btn{
     color: rgb(255, 255, 255);
-    padding: .75rem;
-    background-color: aqua;
+    padding: .75rem 10%;
+    min-width: 2cm;
+    background: linear-gradient(45deg, blue, rgb(17, 192, 204));
     border: .1rem solid black;
     border-radius: .5rem;
     width: 5rem;
